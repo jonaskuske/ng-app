@@ -7,20 +7,18 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "ts-fix": "ng lint --fix true",
-    "prettier-fix": "prettier --write **/*.{js,json,css,md,html}",
-    "e2e": "ng e2e",
-    "tslint-check": "tslint-config-prettier-check ./src/tslint.json"
+    "e2e": "ng e2e"
   },
   "gitHooks": {
-    "pre-commit": "npm run ts-fix && lint-staged"
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,json,css,md,html}": [
-      "prettier --write",
+    "*.ts": [
+      "node ng-lint-staged.js",
       "git add"
     ],
-    "*.ts": [
+    "*.{js,json,css,md,html}": [
+      "prettier --write",
       "git add"
     ]
   },
