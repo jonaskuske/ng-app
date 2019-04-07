@@ -1,0 +1,29 @@
+<ng-container *ngIf="finishedLoading; else loadingSpinner">
+  <section *ngIf="(post$ | async) as post; else notFound">
+    <h2 [innerHTML]="post.title.rendered"></h2>
+
+    <app-showcase
+      [type]="post.acf.showcaseFormat"
+      [image]="post.acf.showcase"
+      [video]="post.acf.youtube"
+    ></app-showcase>
+    <p [innerHTML]="post.acf.beschreibung"></p>
+
+    <h3 *ngIf="post.acf.galerie.length">Galerie</h3>
+    <img [src]="image.sizes.medium" alt="" *ngFor="let image of post.acf.galerie" />
+
+    <footer class="post-detail__footer">
+      <button type="button" (click)="toTop()">Nach oben</button>
+    </footer>
+  </section>
+</ng-container>
+
+<ng-template #notFound>
+  <p class="post-detail__status-msg">
+    Nicht gefunden. <span style="font-style: normal;" role="img" aria-label="Sad cat">😿</span>
+  </p>
+</ng-template>
+
+<ng-template #loadingSpinner>
+  <p class="post-detail__status-msg">Wird geladen... <app-loading-spinner></app-loading-spinner></p>
+</ng-template>

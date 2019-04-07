@@ -1,0 +1,22 @@
+app-top-navigation,
+main {
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+app-top-navigation {
+  position: relative;
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+}
+
+:host-context(body.light) app-top-navigation {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+}

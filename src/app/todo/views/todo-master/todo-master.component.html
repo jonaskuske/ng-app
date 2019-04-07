@@ -1,0 +1,25 @@
+<h2>Todos</h2>
+<h3>Deine Todos</h3>
+<ul *ngIf="(uncompletedTodos$ | async).length; else noUncompletedTodos">
+  <li *ngFor="let todo of (uncompletedTodos$ | async)">
+    <app-todo-entry [todo]="todo"></app-todo-entry>
+  </li>
+</ul>
+<ng-template #noUncompletedTodos>
+  <p>Keine unerledigten Todos.</p>
+</ng-template>
+
+<h4>Erledigte Todos</h4>
+<ul *ngIf="(completedTodos$ | async).length; else noCompletedTodos">
+  <li *ngFor="let todo of (completedTodos$ | async)">
+    <app-todo-entry [todo]="todo"></app-todo-entry>
+  </li>
+</ul>
+<ng-template #noCompletedTodos>
+  <p>Hier erscheinen alle Todos, die du als erledigt markierst.</p>
+</ng-template>
+
+<hr />
+
+<h3>Todo hinzufügen</h3>
+<button>Hinzufügen</button>

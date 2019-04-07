@@ -1,0 +1,10 @@
+.post-detail__footer {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.post-detail__status-msg {
+  text-align: center;
+  font-style: italic;
+  font-weight: bolder;
+}

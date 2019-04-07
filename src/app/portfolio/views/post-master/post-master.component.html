@@ -1,0 +1,25 @@
+<h2>DMP Portfolio</h2>
+<ng-container *ngIf="(posts$ | async).length; else noPosts">
+  <section *ngFor="let post of (posts$ | async)">
+    <h3 [innerHTML]="post.title.rendered"></h3>
+    <p>{{ getTeaser(post.acf.beschreibung) }}</p>
+    <a routerLink="{{ post.id }}">Projekt ansehen →</a>
+    <hr />
+  </section>
+
+  <footer class="post-master__footer">
+    <button type="button" (click)="loadNextPage()" *ngIf="!(isLoading$ | async)">
+      Mehr laden...
+    </button>
+  </footer>
+</ng-container>
+
+<ng-template #noPosts>
+  <p *ngIf="!(isLoading$ | async)" class="post-master__status-msg">
+    Keine Projekte vorhanden. <span aria-hidden="true" style="font-style: normal">🚫</span>
+  </p>
+</ng-template>
+
+<p *ngIf="(isLoading$ | async)" class="post-master__status-msg">
+  Projekte werden geladen... <app-loading-spinner></app-loading-spinner>
+</p>

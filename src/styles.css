@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://cdn.jsdelivr.net/gh/kognise/water.css/water.min.css');
+body {
+  padding: 0;
+  margin-top: 0;
+  max-width: 100%;
+}

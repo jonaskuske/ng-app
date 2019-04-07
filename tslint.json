@@ -39,6 +39,7 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "prettier": true
+    "prettier": true,
+    "curly": false
   }
 }

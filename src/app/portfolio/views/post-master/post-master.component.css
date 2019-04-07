@@ -1,0 +1,18 @@
+section p {
+  display: inline;
+}
+
+a {
+  margin-left: 1em;
+}
+
+.post-master__status-msg {
+  text-align: center;
+  font-style: italic;
+  font-weight: bolder;
+}
+
+.post-master__footer {
+  text-align: center;
+  margin-top: 2rem;
+}

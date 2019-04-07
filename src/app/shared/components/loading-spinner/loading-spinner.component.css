@@ -1,0 +1,23 @@
+.post-detail__spinner {
+  display: inline-block;
+  margin-left: 0.5em;
+  animation: rotate 2.5s infinite ease-in-out;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  65% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
