@@ -2,18 +2,17 @@ import { State, Action, StateContext, Selector, createSelector } from '@ngxs/sto
 import { Todo } from './todo.model'
 import { AddTodo, RemoveTodo, UpdateTodo } from './todo.actions'
 
+export type TodoStateModel = Todo[]
 const withIndex = <T>(item: T, index: number): T & { index: number } => ({ ...item, index })
 
-export type TodoStateModel = Todo[]
+const defaultTodo = new Todo(
+  'Feature "Platform" ausbauen',
+  'Feature "Platform" des Store mit dem Backend verknüpfen.<br>- Services fertigstellen<br>- NGXS einbinden<br>- Paginierung?',
+)
 
 @State<TodoStateModel>({
   name: 'todo',
-  defaults: [
-    new Todo(
-      'Vertrag Hochschule',
-      'Den Vertrag für den Job als studentische Hilfskraft ausfüllen und zur Hochschule zurück schicken.',
-    ),
-  ],
+  defaults: [defaultTodo],
 })
 export class TodoState {
   @Selector()

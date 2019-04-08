@@ -1,13 +1,17 @@
 import { enableProdMode } from '@angular/core'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
+import { BootstrapModuleFn as Bootstrap, hmr, WebpackModule } from '@ngxs/hmr-plugin'
 
 import { AppModule } from './app/app.module'
 import { environment } from './environments/environment'
+
+declare const module: WebpackModule
 
 if (environment.production) {
   enableProdMode()
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err => console.error(err))
+const bootstrap: Bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule)
+
+if (environment.hmr) hmr(module, bootstrap).catch(error => console.error(error))
+else bootstrap().catch(error => console.error(error))

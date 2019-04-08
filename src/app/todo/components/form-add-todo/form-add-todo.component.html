@@ -1,0 +1,29 @@
+<form
+  action="./"
+  method="POST"
+  (ngSubmit)="onSubmit(); todoForm.reset()"
+  #todoForm="ngForm"
+  autocomplete="off"
+>
+  <label for="todoTitle">Titel:</label>
+  <br />
+  <input
+    required
+    type="text"
+    [(ngModel)]="todoTitle"
+    name="todoTitle"
+    id="todoTitle"
+    placeholder="Einkauf bei Lidl"
+  />
+  <label for="todoBody">Inhalt:</label>
+  <br />
+  <textarea
+    required
+    [(ngModel)]="todoBody"
+    name="todoBody"
+    placeholder="• 2 Packungen TK-Spinat..."
+    rows="4"
+  ></textarea>
+  <br />
+  <button [disabled]="!todoForm.form.valid" type="submit">Hinzufügen</button>
+</form>

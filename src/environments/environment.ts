@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  hmr: false,
   apiUrl: 'https://api.dmp-bremerhaven.de/wp-json/wp/v2/',
 }
 

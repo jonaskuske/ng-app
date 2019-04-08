@@ -1,0 +1,24 @@
+input {
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+textarea {
+  max-width: 400px;
+}
+
+button {
+  margin-top: 1rem;
+}
+
+button:disabled {
+  pointer-events: none;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid {
+  outline: 1px solid #850000;
+}

@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
-  hmr: false,
+  production: false,
+  hmr: true,
   apiUrl: 'https://api.dmp-bremerhaven.de/wp-json/wp/v2/',
 }

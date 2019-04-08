@@ -1,6 +1,8 @@
 <article>
   <h5>{{ todo.title }} – {{ todo.isCompleted ? '✔' : 'noch nicht' }} erledigt</h5>
-  <p *ngIf="!todo.isCompleted">{{ todo.body }}</p>
+
+  <p *ngIf="!todo.isCompleted" [innerHTML]="todo.body"></p>
+
   <button type="button" (click)="setCompleteStatus(todo.index, !todo.isCompleted)">
     {{ todo.isCompleted ? '❎ Ausstehend' : '✅ Erledigt' }}
   </button>

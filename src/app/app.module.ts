@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { NgxsModule } from '@ngxs/store'
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin'
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin'
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin'
 import { HttpClientModule } from '@angular/common/http'
@@ -23,6 +24,7 @@ import { AppComponent } from './app.component'
       developmentMode: !environment.production,
       compatibility: { strictContentSecurityPolicy: false },
     }),
+    NgxsStoragePluginModule.forRoot({ key: 'todo' }),
     NgxsRouterPluginModule,
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: !!environment.production }),
     EmbedVideo.forRoot(),
