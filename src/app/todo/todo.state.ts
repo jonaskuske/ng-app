@@ -7,7 +7,7 @@ const withIndex = <T>(item: T, index: number): T & { index: number } => ({ ...it
 
 const defaultTodo = new Todo(
   'Weitere Optionen für die Demo-App',
-  'Features und Methoden, in die man sich anhand der Testanwendung noch einarbeiten kann.<br><br>- Kontrollierte Paginierung für Posts<br>- Reactive Forms<br>- Testing<br>- PWA Implementierung',
+  'Features und Methoden, in die man sich anhand der Testanwendung noch einarbeiten kann.<br><br>- Kontrollierte Paginierung für Posts<br>- Reactive Forms<br>- Testing<br>- PWA Implementierung<br>- Lazy Loading von Feature Modules',
 )
 
 @State<TodoStateModel>({
