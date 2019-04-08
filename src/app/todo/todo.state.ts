@@ -6,8 +6,8 @@ export type TodoStateModel = Todo[]
 const withIndex = <T>(item: T, index: number): T & { index: number } => ({ ...item, index })
 
 const defaultTodo = new Todo(
-  'Feature "Platform" ausbauen',
-  'Feature "Platform" des Store mit dem Backend verknüpfen.<br>- Services fertigstellen<br>- NGXS einbinden<br>- Paginierung?',
+  'Weitere Optionen für die Demo-App',
+  'Features und Methoden, in die man sich anhand der Testanwendung noch einarbeiten kann.<br><br>- Kontrollierte Paginierung für Posts<br>- Reactive Forms<br>- Testing<br>- PWA Implementierung',
 )
 
 @State<TodoStateModel>({
