@@ -1,23 +1,35 @@
-# NG App
+<h1 align=center>🧪 NG App</h1>
+<p align=center>Test application to become familiar with Angular</p>
+&nbsp;
+&nbsp;
 
-> A sample application to get familiar with the Angular framework. Includes Routing, State Management with NGXS, API & Services with (very basic) pagination, template-driven forms and more.
+## Features
 
-## Development server
+  - Dynamic reusable components
+  - Routing with Child Routes
+  - State Management with NGXS
+  - API / Services
+  - Forms (Template-driven)
+  - Dev Setup with HMR
+  - ...and more 👀
 
-Run `ng serve` for a dev server with Hot Module Reload (HMR). The app will be served on `http://localhost:4200/`.
+### Further options to add in the future
 
-## Code scaffolding
+- [ ] Authentication w/ RouteGuard
+- [ ] Better pagination
+- [ ] Reactive Forms
+- [ ] Lazy-loading of feature modules
+- [ ] Progressive Web App
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
-## Build
+## Instructions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Development server
+Run `npm start` for a dev server with Hot Module Reload (HMR). The app will be served on `http://localhost:4200/`.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Build
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
