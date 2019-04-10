@@ -15,9 +15,10 @@ import { NewsfeedModule } from './portfolio/portfolio.module'
 import { TodoModule } from './todo/todo.module'
 
 import { AppComponent } from './app.component'
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     NgxsModule.forRoot([], {

@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 
-const routes: Routes = [{ path: '', redirectTo: 'portfolio', pathMatch: 'full' }]
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+
+const routes: Routes = [
+  { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
+]
 
 @NgModule({
   imports: [
