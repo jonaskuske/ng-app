@@ -1,7 +1,23 @@
 @import url('https://cdn.jsdelivr.net/gh/kognise/water.css/water.min.css');
+html {
+  height: 100%;
+}
+
 body {
   padding: 0;
-  margin-top: 0;
+  margin: 0;
+  min-height: 100%;
   max-width: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+body,
+app-root {
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  width: 100%;
+  flex-grow: 1;
 }
