@@ -20,6 +20,7 @@
 - [ ] Reactive Forms
 - [ ] Lazy-loading of feature modules
 - [ ] Progressive Web App
+- [ ] Testing
 
 &nbsp;
 &nbsp;
