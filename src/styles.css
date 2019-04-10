@@ -3,4 +3,5 @@ body {
   padding: 0;
   margin-top: 0;
   max-width: 100%;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }

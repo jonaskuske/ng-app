@@ -2,11 +2,8 @@ app-top-navigation,
 main {
   padding: 0 1rem;
   box-sizing: border-box;
-}
-
-main {
-  max-width: 800px;
-  margin: 0 auto;
+  /* Fix content shift caused by scroll bar hiding and appearing */
+  padding-left: calc(100vw - 100% + 1rem);
 }
 
 app-top-navigation {
@@ -19,4 +16,12 @@ app-top-navigation {
 
 :host-context(body.light) app-top-navigation {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+}
+
+/* Selector for current active route (the element immediately after router-outlet) */
+
+router-outlet::ng-deep + * {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
 }
