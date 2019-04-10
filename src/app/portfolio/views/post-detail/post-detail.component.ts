@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Post } from '../../post.model'
 import { Store } from '@ngxs/store'
@@ -14,10 +14,13 @@ import { map } from 'rxjs/operators'
 })
 export class PostDetailComponent {
   post$: Observable<Post>
+  projectId: string
   finishedLoading = false
 
   constructor(private route: ActivatedRoute, private store: Store) {
-    const id: number = +this.route.snapshot.paramMap.get('id')
+    this.projectId = this.route.snapshot.paramMap.get('id')
+
+    const id: number = Number(this.projectId)
 
     this.store.dispatch(new GetPost(id)).subscribe(() => (this.finishedLoading = true))
     this.post$ = this.store.select(PortfolioState.getPostById).pipe(map(filterFn => filterFn(id)))
