@@ -1,8 +1,5 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll.tslint": true
-  },
-  "[typescript]": {
-    "editor.formatOnSave": false
-  }
+  "[typescript]": { "editor.formatOnSave": false },
+  "editor.codeActionsOnSave": { "source.fixAll.tslint": true },
+  "material-icon-theme.activeIconPack": "angular_ngrx"
 }

@@ -15,7 +15,7 @@
   },
   "lint-staged": {
     "*.ts": [
-      "node ng-lint-staged.js",
+      "ng-lint-staged lint --tsConfig=tsconfig.json --fix --",
       "git add"
     ],
     "*.{js,json,css,md,html}": [
@@ -65,6 +65,7 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "lint-staged": "^8.1.5",
+    "ng-lint-staged": "^0.1.6",
     "prettier": "^1.16.4",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",

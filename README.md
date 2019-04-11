@@ -5,13 +5,13 @@
 
 ## Features
 
-  - Dynamic reusable components
-  - Routing with Child Routes
-  - State Management with NGXS
-  - API / Services
-  - Forms (Template-driven)
-  - Dev Setup with HMR
-  - ...and more 👀
+- Dynamic reusable components
+- Routing with Child Routes
+- State Management with NGXS
+- API / Services
+- Forms (Template-driven)
+- Dev Setup with HMR
+- ...and more 👀
 
 ### Further options to add in the future
 
@@ -30,7 +30,9 @@
 ## Instructions
 
 ### Development server
+
 Run `npm start` for a dev server with Hot Module Reload (HMR). The app will be served on `http://localhost:4200/`.
 
 ### Build
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.

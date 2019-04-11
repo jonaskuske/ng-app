@@ -69,6 +69,7 @@
             },
             "hmr": {
               "hmr": true,
+              "hmrWarning": false,
               "browserTarget": "ng-app:build:hmr"
             }
           }
