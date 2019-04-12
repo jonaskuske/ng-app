@@ -15,16 +15,17 @@ const linebreakRegex = /<br\s?\/?>(<\/br>)?/g
 export class PostMasterComponent {
   constructor(private store: Store) {}
 
-  @Select(PortfolioState.isFetchingPosts) isLoading$: Observable<boolean>
   @Select(PortfolioState.postsSortedById) posts$: Observable<Post[]>
+  @Select(PortfolioState.isFetchingPosts) isLoading$: Observable<boolean>
+  @Select(PortfolioState.allPagesFetched) allPagesFetched$: Observable<boolean>
 
   loadNextPage() {
     this.store.dispatch(new GetPosts())
   }
   getTeaser(text: string) {
-    const length = text.length
-    if (length < 150) return text
+    text = text.replace(linebreakRegex, '')
 
-    return `${text.slice(0, 145).replace(linebreakRegex, '')}...`
+    if (text.length < 150) return text
+    return `${text.slice(0, 145)}...`
   }
 }

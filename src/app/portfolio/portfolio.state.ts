@@ -16,6 +16,7 @@ export interface PortfolioStateModel {
   posts: Post[]
   isFetchingPosts: boolean
   pageIndex: number
+  allPagesFetched: boolean
 }
 
 @State<PortfolioStateModel>({
@@ -24,6 +25,7 @@ export interface PortfolioStateModel {
     posts: [],
     isFetchingPosts: false,
     pageIndex: 0,
+    allPagesFetched: false,
   },
 })
 export class PortfolioState implements NgxsOnInit {
@@ -44,6 +46,10 @@ export class PortfolioState implements NgxsOnInit {
   @Selector()
   static isFetchingPosts(state: PortfolioStateModel) {
     return state.isFetchingPosts
+  }
+  @Selector()
+  static allPagesFetched(state: PortfolioStateModel) {
+    return state.allPagesFetched
   }
 
   ngxsOnInit(ctx: StateContext<PortfolioStateModel>) {
@@ -98,6 +104,6 @@ export class PortfolioState implements NgxsOnInit {
   @Action(GetPostsError)
   getPostsError(ctx: StateContext<PortfolioStateModel>, action: GetPostError) {
     console.error(action.error)
-    ctx.patchState({ isFetchingPosts: false })
+    ctx.patchState({ isFetchingPosts: false, allPagesFetched: true })
   }
 }

@@ -18,7 +18,7 @@
 - [ ] Authentication w/ RouteGuard
 - [ ] Better pagination
 - [ ] Reactive Forms
-- [ ] Lazy-loading of feature modules
+- [x] Lazy-loading of feature modules
 - [ ] Progressive Web App
 - [ ] Testing
 

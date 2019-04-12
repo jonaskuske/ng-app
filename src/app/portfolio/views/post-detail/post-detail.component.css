@@ -1,10 +1,24 @@
-.post-detail__footer {
-  margin-top: 1rem;
-  text-align: center;
+.post-detail__category {
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 1.5em;
+}
+.post-detail__category__tags {
+  opacity: 0.6;
+  font-weight: 400;
+  font-style: italic;
+}
+.post-detail__category__tags > span:not(:first-child)::before {
+  content: ', ';
 }
 
 .post-detail__status-msg {
   text-align: center;
   font-style: italic;
   font-weight: bolder;
+}
+
+.post-detail__footer {
+  margin-top: 1rem;
+  text-align: center;
 }

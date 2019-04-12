@@ -1,7 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 
 type DisplayMode = 'light' | 'dark'
-const body: HTMLElement = document.body
 
 @Component({
   selector: 'app-top-navigation',
@@ -9,14 +8,20 @@ const body: HTMLElement = document.body
   styleUrls: ['./top-navigation.component.css'],
 })
 export class TopNavigationComponent implements OnInit {
+  private linkElement: HTMLLinkElement = document.querySelector('link[href*="water.css"]')
+
   displayMode: DisplayMode = (localStorage.getItem('displayMode') as DisplayMode) || 'dark'
-  ngOnInit() {
-    if (this.displayMode === 'dark') body.classList.remove('light')
-    else body.classList.add('light')
+
+  setDisplayMode(mode: DisplayMode) {
+    this.linkElement.href = this.linkElement.href.replace(/light|dark/, mode)
+    localStorage.setItem('displayMode', mode)
+    this.displayMode = mode
   }
-  toggleMode: () => void = () => {
-    const nextMode: DisplayMode = body.classList.toggle('light') ? 'light' : 'dark'
-    localStorage.setItem('displayMode', nextMode)
-    this.displayMode = nextMode
+  toggleDisplayMode() {
+    this.setDisplayMode(this.displayMode === 'light' ? 'dark' : 'light')
+  }
+
+  ngOnInit() {
+    this.setDisplayMode(this.displayMode)
   }
 }

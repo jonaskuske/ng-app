@@ -1,6 +1,12 @@
 <ng-container *ngIf="finishedLoading; else loadingSpinner">
   <section *ngIf="(post$ | async) as post; else notFound">
     <h2 [innerHTML]="post.title.rendered"></h2>
+    <p class="post-detail__category">
+      {{ post.acf.page.post_title }}
+      <span *ngIf="post.acf.schlagworte.length" class="post-detail__category__tags">
+        – <span *ngFor="let tag of post.acf.schlagworte">{{ tag.name }}</span>
+      </span>
+    </p>
 
     <app-showcase
       [type]="post.acf.showcaseFormat"
@@ -9,8 +15,15 @@
     ></app-showcase>
     <p [innerHTML]="post.acf.beschreibung"></p>
 
+    <h3>Steckbrief</h3>
+    <app-briefing [data]="post.acf"></app-briefing>
+
     <h3 *ngIf="post.acf.galerie.length">Galerie</h3>
-    <img [src]="image.sizes.medium" alt="" *ngFor="let image of post.acf.galerie" />
+    <img
+      *ngFor="let image of post.acf.galerie"
+      [src]="image.sizes.medium"
+      [alt]="image.alt || image.title || image.name || ''"
+    />
 
     <footer class="post-detail__footer">
       <button type="button" (click)="toTop()">Nach oben</button>

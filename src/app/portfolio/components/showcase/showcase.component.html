@@ -1,5 +1,9 @@
 <ng-container [ngSwitch]="type">
-  <img *ngSwitchCase="'image'" [src]="image.sizes.large" [alt]="image.title || ''" />
+  <img
+    *ngSwitchCase="'image'"
+    [src]="image.sizes.large"
+    [alt]="image.alt || image.title || image.name || ''"
+  />
 
   <div *ngSwitchCase="'video'" class="showcase__iframe-container" [innerHTML]="iframeHTML"></div>
 </ng-container>

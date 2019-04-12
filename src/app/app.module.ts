@@ -11,8 +11,6 @@ import { environment } from 'src/environments/environment'
 
 import { AppRoutingModule } from './app.module.routing'
 import { TopNavigationModule } from './shared/components/top-navigation/top-navigation.module'
-import { NewsfeedModule } from './portfolio/portfolio.module'
-import { TodoModule } from './todo/todo.module'
 
 import { AppComponent } from './app.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
@@ -29,8 +27,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NgxsRouterPluginModule,
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: !!environment.production }),
     EmbedVideo.forRoot(),
-    NewsfeedModule,
-    TodoModule,
     AppRoutingModule,
     HttpClientModule,
     TopNavigationModule,

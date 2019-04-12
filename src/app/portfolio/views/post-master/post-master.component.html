@@ -8,7 +8,11 @@
   </section>
 
   <footer class="post-master__footer">
-    <button type="button" (click)="loadNextPage()" *ngIf="!(isLoading$ | async)">
+    <button
+      *ngIf="!(allPagesFetched$ | async) && !(isLoading$ | async)"
+      (click)="loadNextPage()"
+      type="button"
+    >
       Mehr laden...
     </button>
   </footer>
