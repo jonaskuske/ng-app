@@ -20,3 +20,8 @@ app-root {
   width: 100%;
   flex-grow: 1;
 }
+
+/* TODO: Remove once github.com/kognise/water.css/issues/45 is merged */
+img {
+  height: auto;
+}

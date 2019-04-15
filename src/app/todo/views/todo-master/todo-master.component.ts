@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
 import { Select } from '@ngxs/store'
-import { TodoState } from '../../todo.state'
 import { Observable } from 'rxjs'
+
+import { TodoState } from '../../todo.state'
 import { Todo } from '../../todo.model'
 
 @Component({
@@ -10,6 +11,6 @@ import { Todo } from '../../todo.model'
   styleUrls: ['./todo-master.component.css'],
 })
 export class TodoMasterComponent {
-  @Select(TodoState.getByCompletedState(false)) uncompletedTodos$: Observable<Todo[]>
-  @Select(TodoState.getByCompletedState(true)) completedTodos$: Observable<Todo[]>
+  @Select(TodoState.todosByCompletedState(false)) uncompletedTodos$: Observable<Todo[]>
+  @Select(TodoState.todosByCompletedState(true)) completedTodos$: Observable<Todo[]>
 }

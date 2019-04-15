@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router'
 export class PageNotFoundComponent implements OnInit {
   public activatedPath: string
 
-  constructor(public route: ActivatedRoute) {
-    this.activatedPath = '/' + this.route.snapshot.url.join('/')
+  constructor(route: ActivatedRoute) {
+    this.activatedPath = '/' + route.snapshot.url.join('/')
   }
 
   ngOnInit() {}

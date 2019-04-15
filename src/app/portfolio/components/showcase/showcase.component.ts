@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { EmbedVideoService } from 'ngx-embed-video'
-import { ShowcaseFormat, Image, YoutubeURL } from '../../post.model'
+import { ShowcaseFormat, Image, YoutubeURL } from '../../models/post.model'
 
 @Component({
   selector: 'app-showcase',

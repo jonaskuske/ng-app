@@ -9,7 +9,7 @@
 
   <footer class="post-master__footer">
     <button
-      *ngIf="!(allPagesFetched$ | async) && !(isLoading$ | async)"
+      *ngIf="(totalPages$ | async) > (currentPage$ | async) && !(requested$ | async)"
       (click)="loadNextPage()"
       type="button"
     >
@@ -19,11 +19,11 @@
 </ng-container>
 
 <ng-template #noPosts>
-  <p *ngIf="!(isLoading$ | async)" class="post-master__status-msg">
+  <p *ngIf="!(requested$ | async)" class="post-master__status-msg">
     Keine Projekte vorhanden. <span aria-hidden="true" style="font-style: normal">🚫</span>
   </p>
 </ng-template>
 
-<p *ngIf="(isLoading$ | async)" class="post-master__status-msg">
+<p *ngIf="(requested$ | async)" class="post-master__status-msg">
   Projekte werden geladen... <app-loading-spinner></app-loading-spinner>
 </p>

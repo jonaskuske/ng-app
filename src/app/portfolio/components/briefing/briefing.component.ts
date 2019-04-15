@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core'
+import { Post } from '../../models/post.model'
 
 @Component({
   selector: 'app-briefing',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core'
   styleUrls: ['./briefing.component.css'],
 })
 export class BriefingComponent implements OnInit {
-  @Input() data: any
+  @Input() data: Post['acf']
 
   ngOnInit() {}
 }

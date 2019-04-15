@@ -16,7 +16,7 @@
 ### Further options to add in the future
 
 - [ ] Authentication w/ RouteGuard
-- [ ] Better pagination
+- [x] Better pagination
 - [ ] Reactive Forms
 - [x] Lazy-loading of feature modules
 - [ ] Progressive Web App

@@ -3,6 +3,8 @@
     *ngSwitchCase="'image'"
     [src]="image.sizes.large"
     [alt]="image.alt || image.title || image.name || ''"
+    [width]="image.sizes['large-width']"
+    [height]="image.sizes['large-height']"
   />
 
   <div *ngSwitchCase="'video'" class="showcase__iframe-container" [innerHTML]="iframeHTML"></div>

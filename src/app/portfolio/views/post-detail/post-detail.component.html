@@ -1,4 +1,4 @@
-<ng-container *ngIf="finishedLoading; else loadingSpinner">
+<ng-container *ngIf="!isFetching; else loadingSpinner">
   <section *ngIf="(post$ | async) as post; else notFound">
     <h2 [innerHTML]="post.title.rendered"></h2>
     <p class="post-detail__category">
@@ -23,6 +23,8 @@
       *ngFor="let image of post.acf.galerie"
       [src]="image.sizes.medium"
       [alt]="image.alt || image.title || image.name || ''"
+      [width]="image.sizes['medium-width']"
+      [height]="image.sizes['medium-height']"
     />
 
     <footer class="post-detail__footer">
@@ -33,7 +35,7 @@
 
 <ng-template #notFound>
   <p class="post-detail__status-msg">
-    Projekt mit ID »{{ projectId }}« nicht gefunden.
+    Projekt mit ID »{{ rawId }}« nicht gefunden.
     <span style="font-style: normal;" role="img" aria-label="Sad cat">😿</span>
   </p>
 </ng-template>

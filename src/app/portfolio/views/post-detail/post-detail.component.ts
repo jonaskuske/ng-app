@@ -1,29 +1,39 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { Post } from '../../post.model'
 import { Store } from '@ngxs/store'
+import { Observable, race } from 'rxjs'
+import { map, filter } from 'rxjs/operators'
+
 import { GetPost } from '../../portfolio.actions'
 import { PortfolioState } from '../../portfolio.state'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+
+import { Post } from '../../models/post.model'
 
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.css'],
 })
-export class PostDetailComponent {
+export class PostDetailComponent implements OnInit {
   post$: Observable<Post>
-  projectId: string
-  finishedLoading = false
+  id: number
+  rawId: string
+  isFetching = true
 
-  constructor(private route: ActivatedRoute, private store: Store) {
-    this.projectId = this.route.snapshot.paramMap.get('id')
+  constructor(route: ActivatedRoute, private store: Store) {
+    this.rawId = route.snapshot.paramMap.get('id')
+    this.id = Number(this.rawId)
 
-    const id: number = Number(this.projectId)
+    this.post$ = store.select(PortfolioState.postById).pipe(
+      map(byId => byId(this.id)),
+      filter(post => post !== undefined),
+    )
+  }
 
-    this.store.dispatch(new GetPost(id)).subscribe(() => (this.finishedLoading = true))
-    this.post$ = this.store.select(PortfolioState.getPostById).pipe(map(filterFn => filterFn(id)))
+  ngOnInit() {
+    const { id, store, post$ } = this
+
+    race(post$, store.dispatch(new GetPost(id))).subscribe(() => (this.isFetching = false))
   }
 
   toTop() {

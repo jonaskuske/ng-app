@@ -15,7 +15,7 @@ export class TodoEntryComponent {
   setCompleteStatus(index: number, value: boolean = true) {
     this.store.dispatch(new UpdateTodo(index, { isCompleted: value }))
   }
-  deleteTodo(index) {
+  deleteTodo(index: number) {
     this.store.dispatch(new RemoveTodo(index))
   }
 }

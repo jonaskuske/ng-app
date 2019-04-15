@@ -10,5 +10,5 @@ export class RemoveTodo {
 }
 export class UpdateTodo {
   static readonly type = '[Todo] Update Todo'
-  constructor(public index: number, public todo: Todo | any) {}
+  constructor(public index: number, public todo: Partial<Todo>) {}
 }

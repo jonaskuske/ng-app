@@ -16,14 +16,14 @@ const defaultTodo = new Todo(
 })
 export class TodoState {
   @Selector()
-  static getAll(state: TodoStateModel) {
+  static todos(state: TodoStateModel) {
     return state.map(withIndex)
   }
-  static getByCompletedState(completedState: boolean) {
+  static todosByCompletedState(completedState: boolean) {
     return createSelector(
       [TodoState],
       (state: TodoStateModel) => {
-        return state.map(withIndex).filter(todo => todo.isCompleted === completedState)
+        return TodoState.todos(state).filter(todo => todo.isCompleted === completedState)
       },
     )
   }

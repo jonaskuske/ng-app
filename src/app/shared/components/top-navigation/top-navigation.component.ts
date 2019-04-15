@@ -1,27 +1,19 @@
-import { Component, OnInit } from '@angular/core'
-
-type DisplayMode = 'light' | 'dark'
+import { Component } from '@angular/core'
+import { DisplayModeService, DisplayMode } from '../../services/display-mode.service'
 
 @Component({
   selector: 'app-top-navigation',
   templateUrl: './top-navigation.component.html',
   styleUrls: ['./top-navigation.component.css'],
 })
-export class TopNavigationComponent implements OnInit {
-  private linkElement: HTMLLinkElement = document.querySelector('link[href*="water.css"]')
+export class TopNavigationComponent {
+  constructor(private displayModeService: DisplayModeService) {}
 
-  displayMode: DisplayMode = (localStorage.getItem('displayMode') as DisplayMode) || 'dark'
-
-  setDisplayMode(mode: DisplayMode) {
-    this.linkElement.href = this.linkElement.href.replace(/light|dark/, mode)
-    localStorage.setItem('displayMode', mode)
-    this.displayMode = mode
+  get displayMode() {
+    return this.displayModeService.displayMode
   }
+
   toggleDisplayMode() {
-    this.setDisplayMode(this.displayMode === 'light' ? 'dark' : 'light')
-  }
-
-  ngOnInit() {
-    this.setDisplayMode(this.displayMode)
+    this.displayModeService.toggleDisplayMode()
   }
 }

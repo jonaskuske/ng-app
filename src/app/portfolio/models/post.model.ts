@@ -1,7 +1,3 @@
-interface ObjectWithName {
-  name: string
-}
-
 export interface Post {
   id: number
   title: { rendered: string }
@@ -29,6 +25,13 @@ export interface Image {
   name: string
   sizes: {
     medium: string
+    'medium-width': number
+    'medium-height': number
     large: string
+    'large-width': number
+    'large-height': number
   }
+}
+export interface ObjectWithName {
+  name: string
 }

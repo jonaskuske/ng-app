@@ -9,8 +9,8 @@
   <br />
   <input
     required
-    type="text"
     [(ngModel)]="todoTitle"
+    type="text"
     name="todoTitle"
     id="todoTitle"
     placeholder="Einkauf bei Lidl"
@@ -20,9 +20,10 @@
   <textarea
     required
     [(ngModel)]="todoBody"
-    name="todoBody"
-    placeholder="• 2 Packungen TK-Spinat..."
     rows="4"
+    name="todoBody"
+    id="todoBody"
+    placeholder="• 2 Packungen TK-Spinat..."
   ></textarea>
   <br />
   <button [disabled]="!todoForm.form.valid" type="submit">Hinzufügen</button>
