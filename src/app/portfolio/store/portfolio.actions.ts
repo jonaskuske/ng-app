@@ -1,5 +1,6 @@
-import { Page } from '../shared/models'
-import { Post } from './models/post.model'
+import { Page } from '../../shared/models'
+import { Post } from '../models/post.model'
+import { PostRequestOptions } from '../posts.service'
 
 export class GetPost {
   static readonly type = '[Portfolio] Get Post'
@@ -16,13 +17,13 @@ export class GetPostError {
 
 export class GetPostPage {
   static readonly type = '[Portfolio] Get Post Page'
-  constructor(public page: number) {}
+  constructor(public page: PostRequestOptions) {}
 }
 export class GetPostPageSuccess {
   static readonly type = '[Portfolio API] Get Post Page Success'
-  constructor(public page: number, public payload: Page<Post>) {}
+  constructor(public page: PostRequestOptions, public payload: Page<Post>) {}
 }
 export class GetPostPageError {
   static readonly type = '[Portfolio API] Get Post Page Error'
-  constructor(public page: number, public error: Error) {}
+  constructor(public page: PostRequestOptions, public error: Error) {}
 }

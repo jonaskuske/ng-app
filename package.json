@@ -39,7 +39,7 @@
     "@ngxs/devtools-plugin": "^3.4.3",
     "@ngxs/router-plugin": "^3.4.3",
     "@ngxs/storage-plugin": "^3.4.3",
-    "@ngxs/store": "^3.4.3",
+    "@ngxs/store": "^3.4.3-dev.master-19b4c6e",
     "core-js": "^2.5.4",
     "ngx-embed-video": "^1.0.4",
     "rxjs": "~6.3.3",

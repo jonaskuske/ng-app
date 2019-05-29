@@ -7,6 +7,13 @@ import { environment } from 'src/environments/environment'
 import { Page } from '../shared/models'
 import { Post } from './models/post.model'
 
+export interface PostRequestOptions {
+  page: number
+  perPage?: number
+}
+
+const { apiUrl } = environment
+
 const headersGetTotal = (headers: HttpHeaders) => Number(headers.get('x-wp-total'))
 const headersGetTotalPages = (headers: HttpHeaders) => Number(headers.get('x-wp-totalpages'))
 
@@ -20,15 +27,12 @@ export class PostsService {
   constructor(private http: HttpClient) {}
 
   getPost(id: number) {
-    return this.http.get<Post>(`${environment.apiUrl}posts/${id}`)
+    return this.http.get<Post>(`${apiUrl}posts/${id}`)
   }
 
-  getPosts({ page = 1, perPage = 10 } = {}) {
-    const respone = this.http.get<Post[]>(
-      `${environment.apiUrl}posts?per_page=${perPage}&page=${page}`,
-      { observe: 'response' },
-    )
-
-    return respone.pipe(map(getPostPageFromResponse))
+  getPosts({ page, perPage = 10 }: PostRequestOptions) {
+    return this.http
+      .get<Post[]>(`${apiUrl}posts?per_page=${perPage}&page=${page}`, { observe: 'response' })
+      .pipe(map(getPostPageFromResponse))
   }
 }

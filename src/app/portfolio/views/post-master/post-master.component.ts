@@ -1,34 +1,50 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Select, Store } from '@ngxs/store'
-import { Observable, combineLatest } from 'rxjs'
-import { first } from 'rxjs/operators'
-
-import { PortfolioState } from '../../portfolio.state'
-import { GetPostPage } from '../../portfolio.actions'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 
 import { Post } from '../../models/post.model'
+import { GetPostPage } from '../../store/portfolio.actions'
+import { PortfolioSelectors } from '../../store/portfolio.selectors'
+import { PostRequestOptions } from '../../posts.service'
 
 const linebreakRegex = /<br\s?\/?>(<\/br>)?/g
+
+type PostQueryFn = ReturnType<typeof PortfolioSelectors.postQueryFn>
+type EntitiesByQueryFn$ = Observable<ReturnType<typeof PortfolioSelectors.postEntitiesByQueryFn>>
 
 @Component({
   selector: 'app-post-master',
   templateUrl: './post-master.component.html',
   styleUrls: ['./post-master.component.css'],
 })
-export class PostMasterComponent {
-  constructor(private store: Store) {}
+export class PostMasterComponent implements OnInit {
+  @Select(PortfolioSelectors.postQueryFn) postQueryFn$: Observable<PostQueryFn>
+  @Select(PortfolioSelectors.postEntitiesByQueryFn) postEntitiesByQueryFn$: EntitiesByQueryFn$
+  pagination: PostRequestOptions = { page: 1, perPage: 8 }
 
-  @Select(PortfolioState.postsSortedById) posts$: Observable<Post[]>
-  @Select(PortfolioState.requested) requested$: Observable<boolean>
-  @Select(PortfolioState.totalPages) totalPages$: Observable<number>
-  @Select(PortfolioState.currentPage) currentPage$: Observable<number>
+  posts$: Observable<Post[]>
+  query$: Observable<ReturnType<PostQueryFn>>
+  isFetching$: Observable<boolean>
 
-  loadNextPage() {
-    combineLatest(this.currentPage$, this.totalPages$)
-      .pipe(first())
-      .subscribe(([currentPage, totalPages]) => {
-        if (currentPage < totalPages) this.store.dispatch(new GetPostPage(currentPage + 1))
-      })
+  constructor(private store: Store) {
+    this.posts$ = this.postEntitiesByQueryFn$.pipe(
+      map(postsForQuery => postsForQuery(this.pagination)),
+      map(postEntities => postEntities.map(p => p.entity)),
+    )
+    this.query$ = this.postQueryFn$.pipe(map(getPostQuery => getPostQuery(this.pagination)))
+    this.isFetching$ = this.query$.pipe(map(q => Object.values(q.pages).some(p => p.isFetching)))
+  }
+
+  ngOnInit() {
+    this.loadPage()
+  }
+  loadPage() {
+    this.store.dispatch(new GetPostPage(this.pagination))
+  }
+  requestNextPage() {
+    this.pagination.page++
+    this.loadPage()
   }
 
   getTeaser(text: string) {

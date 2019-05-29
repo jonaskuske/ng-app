@@ -1,4 +1,4 @@
-<ng-container *ngIf="!isFetching; else loadingSpinner">
+<ng-container *ngIf="!(isFetching$ | async); else loadingSpinner">
   <section *ngIf="(post$ | async) as post; else notFound">
     <h2 [innerHTML]="post.title.rendered"></h2>
     <p class="post-detail__category">

@@ -22,6 +22,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NgxsModule.forRoot([], {
       developmentMode: !environment.production,
       compatibility: { strictContentSecurityPolicy: false },
+      selectorOptions: { injectContainerState: false, suppressErrors: false },
     }),
     NgxsStoragePluginModule.forRoot({ key: 'todo' }),
     NgxsRouterPluginModule,
