@@ -1,11 +1,11 @@
 {
   "name": "ng-app",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "scripts": {
     "ng": "ng",
     "start": "ng s -c hmr",
     "build": "ng b --prod",
-    "build:gh-pages": "ng b --prod --output-path docs --base-href /ng-app/",
+    "deploy": "ng b --prod --output-path docs --base-href /ng-app/",
     "test": "ng t",
     "lint": "ng l --fix",
     "e2e": "ng e"
