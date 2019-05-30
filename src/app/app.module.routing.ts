@@ -4,8 +4,11 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 const routes: Routes = [
-  { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
-  { path: 'todo', loadChildren: './todo/todo.module#TodoModule' },
+  {
+    path: 'portfolio',
+    loadChildren: () => import('./portfolio/portfolio.module').then(m => m.PortfolioModule),
+  },
+  { path: 'todo', loadChildren: () => import('./todo/todo.module').then(m => m.TodoModule) },
   { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ]
