@@ -3,7 +3,7 @@ import { map, catchError } from 'rxjs/operators'
 import { PostsService } from '../posts.service'
 import { patch } from '@ngxs/store/operators'
 import { addEntity, addEntities, updateEntity, createEntity } from '../../shared/util/store'
-import { serializePageQuery } from 'src/app/shared/util'
+import { serializePageQuery } from '../../shared/util'
 import { PaginatedEntities } from '../../shared/models'
 import { Post } from '../models/post.model'
 import {
@@ -56,23 +56,20 @@ export class PortfolioState implements NgxsOnInit {
   getPostPage(ctx: PortfolioStateContext, { page }: GetPostPage) {
     const state = ctx.getState()
     const query = serializePageQuery(page)
+
     const existingQuery = ctx.getState().pagination[query]
     if (existingQuery && existingQuery.pages[page.page]) return
-
     if (!existingQuery) {
-      ctx.setState(
-        patch({
-          pagination: patch({ [query]: { total: 0, totalPages: 0, pages: {} } }),
-        }),
-      )
+      ctx.patchState({
+        pagination: { ...state.pagination, [query]: { total: 0, totalPages: 0, pages: {} } },
+      })
     }
+
     ctx.setState(
       patch({
         pagination: patch({
           [query]: patch({
-            pages: patch({
-              [page.page]: { ...createEntity(page.page), isFetching: true },
-            }),
+            pages: patch({ [page.page]: { ...createEntity(page.page), isFetching: true } }),
           }),
         }),
       }),
@@ -86,7 +83,6 @@ export class PortfolioState implements NgxsOnInit {
 
   @Action(GetPostPageSuccess)
   getPostPageSuccess(ctx: PortfolioStateContext, { page, payload }: GetPostPageSuccess) {
-    const state = ctx.getState()
     const query = serializePageQuery(page)
 
     const entities = payload.body.map(item => createEntity(item.id, item))
@@ -96,12 +92,10 @@ export class PortfolioState implements NgxsOnInit {
     ctx.setState(
       patch({
         pagination: patch({
-          [query]: patch<PortfolioStateModel['pagination']['?']>({
+          [query]: patch({
             total: payload.total,
             totalPages: payload.totalPages,
-            pages: patch({
-              [page.page]: { ...createEntity(page.page, pageIds) },
-            }),
+            pages: patch({ [page.page]: { ...createEntity(page.page, pageIds) } }),
           }),
         }),
       }),
