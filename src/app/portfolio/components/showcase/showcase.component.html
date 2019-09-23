@@ -7,5 +7,7 @@
     [height]="image.sizes['large-height']"
   />
 
-  <div *ngSwitchCase="'video'" class="showcase__iframe-container" [innerHTML]="iframeHTML"></div>
+  <div *ngSwitchCase="'video'" class="showcase__iframe-container">
+    <youtube-player [videoId]="videoId"></youtube-player>
+  </div>
 </ng-container>

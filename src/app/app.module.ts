@@ -5,7 +5,6 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin'
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin'
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin'
 import { HttpClientModule } from '@angular/common/http'
-import { EmbedVideo } from 'ngx-embed-video'
 
 import { environment } from 'src/environments/environment'
 
@@ -27,7 +26,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NgxsStoragePluginModule.forRoot({ key: 'todo' }),
     NgxsRouterPluginModule,
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: !!environment.production }),
-    EmbedVideo.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     TopNavigationModule,
