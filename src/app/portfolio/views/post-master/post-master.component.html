@@ -1,6 +1,6 @@
 <h2>DMP Portfolio</h2>
 <ng-container *ngIf="(posts$ | async).length; else noPosts">
-  <section *ngFor="let post of (posts$ | async)">
+  <section *ngFor="let post of posts$ | async">
     <h3 [innerHTML]="post.title.rendered"></h3>
     <p [innerHTML]="getTeaser(post.acf.beschreibung)"></p>
     <a routerLink="{{ post.id }}">Projekt ansehen →</a>
@@ -9,7 +9,7 @@
 
   <footer class="post-master__footer">
     <button
-      *ngIf="(query$ | async).totalPages > pagination.page && !(isFetching$ | async)"
+      *ngIf="(query$ | async).totalPages > pagination.page && (isFetching$ | async) === false"
       (click)="requestNextPage()"
       type="button"
     >
@@ -19,11 +19,11 @@
 </ng-container>
 
 <ng-template #noPosts>
-  <p *ngIf="!(isFetching$ | async)" class="post-master__status-msg">
+  <p *ngIf="(isFetching$ | async) === false" class="post-master__status-msg">
     Keine Projekte vorhanden. <span aria-hidden="true" style="font-style: normal">🚫</span>
   </p>
 </ng-template>
 
-<p *ngIf="(isFetching$ | async)" class="post-master__status-msg">
+<p *ngIf="isFetching$ | async" class="post-master__status-msg">
   Projekte werden geladen... <app-loading-spinner></app-loading-spinner>
 </p>

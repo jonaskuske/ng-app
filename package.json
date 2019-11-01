@@ -3,9 +3,8 @@
   "version": "1.4.2",
   "scripts": {
     "ng": "ng",
-    "start": "ng s -c hmr",
+    "start": "ng s -c hmr --base-href /ng-app/ -o",
     "build": "ng b --prod",
-    "deploy": "ng b --prod --output-path docs --base-href /ng-app/",
     "test": "ng t",
     "lint": "ng l --fix",
     "e2e": "ng e"
@@ -38,10 +37,11 @@
     "@angular/router": "^8.2.13",
     "@angular/youtube-player": "^8.2.3",
     "@ngxs/devtools-plugin": "^3.5.1",
-    "@ngxs/router-plugin": "3.5.0",
+    "@ngxs/router-plugin": "^3.5.1",
     "@ngxs/storage-plugin": "^3.5.1",
     "@ngxs/store": "^3.5.1",
-    "core-js": "^3.3.5",
+    "angular-cli-ghpages": "^0.6.0",
+    "core-js": "^3.3.6",
     "rxjs": "~6.5.3",
     "smoothscroll-anchor-polyfill": "^1.3.0",
     "smoothscroll-polyfill": "^0.4.4",
@@ -49,8 +49,8 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.16",
-    "@angular/cli": "^8.3.16",
+    "@angular-devkit/build-angular": "^0.803.17",
+    "@angular/cli": "^8.3.17",
     "@angular/compiler-cli": "^8.2.13",
     "@angular/language-service": "^8.2.13",
     "@angularclass/hmr": "^2.1.3",

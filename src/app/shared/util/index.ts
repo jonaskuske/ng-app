@@ -2,11 +2,11 @@ export const isArray = (item: any): item is any[] => Array.isArray(item)
 
 export const serializePageQuery = ({ page, ...params }: any) => `?${new URLSearchParams(params)}`
 
-export const getYoutubeId = (url, opts = { fuzzy: true }) => {
+export const getYoutubeId = (url: string, opts = { fuzzy: true }) => {
   if (!/youtu\.?be/.test(url)) return null
 
   // Look first for known patterns
-  let i
+  let i: number
   const patterns = [
     /youtu\.be\/([^#&?]{11})/, // youtu.be/<id>
     /\?v=([^#&?]{11})/, // ?v=<id>
