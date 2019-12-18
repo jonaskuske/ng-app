@@ -14,6 +14,7 @@ import {
   GetPostPageSuccess,
   GetPostPageError,
 } from './portfolio.actions'
+import { Injectable } from '@angular/core'
 
 export type PortfolioStateModel = PaginatedEntities<Post>
 export type PortfolioStateContext = StateContext<PortfolioStateModel>
@@ -21,6 +22,7 @@ export type PortfolioStateContext = StateContext<PortfolioStateModel>
 const initialState: PortfolioStateModel = { entities: {}, ids: [], pagination: {} }
 
 @State<PortfolioStateModel>({ name: 'portfolio', defaults: initialState })
+@Injectable()
 export class PortfolioState implements NgxsOnInit {
   constructor(private postsService: PostsService, private store: Store) {}
 
@@ -33,7 +35,9 @@ export class PortfolioState implements NgxsOnInit {
     const existing = ctx.getState().entities[id]
     if (existing && !existing.isError) return ctx.dispatch(new GetPostSuccess(existing.entity))
 
-    ctx.setState(addEntity<Post>({ ...createEntity<Post>(id), isFetching: true }))
+    ctx.setState(
+      addEntity<Post>({ ...createEntity<Post>(id), isFetching: true }),
+    )
 
     return this.postsService.getPost(id).pipe(
       map(response => ctx.dispatch(new GetPostSuccess(response))),

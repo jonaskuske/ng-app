@@ -1,6 +1,7 @@
 import { State, Action, StateContext, Selector, createSelector } from '@ngxs/store'
 import { Todo } from './todo.model'
 import { AddTodo, RemoveTodo, UpdateTodo } from './todo.actions'
+import { Injectable } from '@angular/core'
 
 export type TodoStateModel = Todo[]
 const withIndex = <T>(item: T, index: number): T & { index: number } => ({ ...item, index })
@@ -10,10 +11,8 @@ const defaultTodo = new Todo(
   'Features und Methoden, in die man sich anhand der Testanwendung noch einarbeiten kann.<br><br>- Kontrollierte Paginierung für Posts<br>- Reactive Forms<br>- Authentifzierung<br>- Testing<br>- PWA Implementierung',
 )
 
-@State<TodoStateModel>({
-  name: 'todo',
-  defaults: [defaultTodo],
-})
+@State<TodoStateModel>({ name: 'todo', defaults: [defaultTodo] })
+@Injectable()
 export class TodoState {
   @Selector()
   static todos(state: TodoStateModel) {
