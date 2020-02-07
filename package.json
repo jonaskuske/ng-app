@@ -14,12 +14,10 @@
   },
   "lint-staged": {
     "*.ts": [
-      "ng-lint-staged lint --tsConfig=tsconfig.json --fix --",
-      "git add"
+      "ng-lint-staged lint --tsConfig=tsconfig.json --fix --"
     ],
     "*.{js,json,css,md,html}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "eslintIgnore": [
