@@ -1,6 +1,6 @@
 {
   "name": "ng-app",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng s -c hmr --base-href /ng-app/",
@@ -44,7 +44,6 @@
     "@ngxs/storage-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
     "angular-cli-ghpages": "^0.6.2",
-    "core-js": "^3.6.4",
     "rxjs": "~6.5.4",
     "smoothscroll-anchor-polyfill": "^1.3.1",
     "smoothscroll-polyfill": "^0.4.4",
