@@ -1,9 +1,11 @@
-import { Selector } from '@ngxs/store'
-import { PortfolioState, PortfolioStateModel } from './portfolio.state'
-import { Post } from '../models/post.model'
 import { SharedSelectors } from 'src/app/shared/store/selectors'
-import { PostRequestOptions } from '../posts.service'
 import { serializePageQuery } from 'src/app/shared/util'
+
+import { Selector } from '@ngxs/store'
+import { Post } from '../models/post.model'
+import { PostRequestOptions } from '../posts.service'
+
+import { PortfolioState, PortfolioStateModel } from './portfolio.state'
 
 export class PortfolioSelectors {
   static entities = SharedSelectors.getEntities<Post>(PortfolioState)

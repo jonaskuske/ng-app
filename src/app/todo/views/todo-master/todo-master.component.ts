@@ -1,9 +1,10 @@
 import { Component } from '@angular/core'
-import { Select } from '@ngxs/store'
+
 import { Observable } from 'rxjs'
 
-import { TodoState } from '../../todo.state'
+import { Select } from '@ngxs/store'
 import { Todo } from '../../todo.model'
+import { TodoState } from '../../todo.state'
 
 @Component({
   selector: 'app-todo-master',

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { Store, Select } from '@ngxs/store'
+
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
+import { Select, Store } from '@ngxs/store'
 import { GetPost } from '../../store/portfolio.actions'
 import { PortfolioSelectors } from '../../store/portfolio.selectors'
 

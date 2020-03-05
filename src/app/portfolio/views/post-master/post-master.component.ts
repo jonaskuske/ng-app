@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core'
-import { Select, Store } from '@ngxs/store'
+
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
+import { Select, Store } from '@ngxs/store'
 import { Post } from '../../models/post.model'
+import { PostRequestOptions } from '../../posts.service'
 import { GetPostPage } from '../../store/portfolio.actions'
 import { PortfolioSelectors } from '../../store/portfolio.selectors'
-import { PostRequestOptions } from '../../posts.service'
 
 const linebreakRegex = /<br\s?\/?>(<\/br>)?/g
 
@@ -50,7 +51,9 @@ export class PostMasterComponent implements OnInit {
   getTeaser(text: string) {
     text = text.replace(linebreakRegex, '')
 
-    if (text.length < 150) return text
+    if (text.length < 150) {
+      return text
+    }
     return `${text.slice(0, 145)}...`
   }
 }

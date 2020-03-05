@@ -1,27 +1,58 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-import { By } from '@angular/platform-browser'
-import { DebugElement } from '@angular/core'
+import { Store } from '@ngxs/store'
+import { render } from '@testing-library/angular'
+import { RemoveTodo, UpdateTodo } from '../../todo.actions'
+import { Todo } from '../../todo.model'
 
 import { TodoEntryComponent } from './todo-entry.component'
 
 describe('TodoEntryComponent', () => {
-  let component: TodoEntryComponent
-  let fixture: ComponentFixture<TodoEntryComponent>
+  it('delets todo on click', async () => {
+    const dispatch = jest.fn()
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TodoEntryComponent],
-    }).compileComponents()
-  }))
+    const component = await render(TodoEntryComponent, {
+      componentProperties: { todo: { title: '', body: '', isCompleted: false } },
+      providers: [{ provide: Store, useValue: { dispatch } }],
+    })
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TodoEntryComponent)
-    component = fixture.componentInstance
-    fixture.detectChanges()
+    const deleteButton = component.getByText(/Löschen/)
+    await deleteButton.click()
+
+    expect(dispatch).toBeCalledWith(expect.any(RemoveTodo))
   })
 
-  it('should create', () => {
-    expect(component).toBeTruthy()
+  it('marks as complete on click', async () => {
+    const dispatch = jest.fn()
+    const todo = new Todo('', '', false)
+
+    const component = await render(TodoEntryComponent, {
+      componentProperties: { todo },
+      providers: [{ provide: Store, useValue: { dispatch } }],
+    })
+
+    const completedButton = component.getByText(/Erledigt/)
+    completedButton.click()
+
+    expect(dispatch).toHaveBeenCalledWith(expect.any(UpdateTodo))
+    expect(dispatch).toHaveBeenCalledWith(
+      expect.objectContaining(new UpdateTodo(todo.index, { isCompleted: true })),
+    )
+  })
+
+  it('marks as uncomplete on click', async () => {
+    const dispatch = jest.fn()
+    const todo = new Todo('', '', true)
+
+    const component = await render(TodoEntryComponent, {
+      componentProperties: { todo },
+      providers: [{ provide: Store, useValue: { dispatch } }],
+    })
+
+    const uncompletedButton = component.getByText(/Ausstehend/)
+    uncompletedButton.click()
+
+    expect(dispatch).toHaveBeenCalledWith(expect.any(UpdateTodo))
+    expect(dispatch).toHaveBeenCalledWith(
+      expect.objectContaining(new UpdateTodo(todo.index, { isCompleted: false })),
+    )
   })
 })

@@ -1,20 +1,23 @@
-import { State, Action, StateContext, NgxsOnInit, Store } from '@ngxs/store'
-import { map, catchError } from 'rxjs/operators'
-import { PostsService } from '../posts.service'
+import { Injectable } from '@angular/core'
+
+import { catchError, map } from 'rxjs/operators'
+
+import { Action, NgxsOnInit, State, StateContext, Store } from '@ngxs/store'
 import { patch } from '@ngxs/store/operators'
-import { addEntity, addEntities, updateEntity, createEntity } from '../../shared/util/store'
-import { serializePageQuery } from '../../shared/util'
 import { PaginatedEntities } from '../../shared/models'
+import { serializePageQuery } from '../../shared/util'
+import { addEntities, addEntity, createEntity, updateEntity } from '../../shared/util/store'
 import { Post } from '../models/post.model'
+import { PostsService } from '../posts.service'
+
 import {
   GetPost,
-  GetPostSuccess,
   GetPostError,
   GetPostPage,
-  GetPostPageSuccess,
   GetPostPageError,
+  GetPostPageSuccess,
+  GetPostSuccess,
 } from './portfolio.actions'
-import { Injectable } from '@angular/core'
 
 export type PortfolioStateModel = PaginatedEntities<Post>
 export type PortfolioStateContext = StateContext<PortfolioStateModel>
@@ -33,7 +36,9 @@ export class PortfolioState implements NgxsOnInit {
   @Action(GetPost)
   getPost(ctx: PortfolioStateContext, { id }: GetPost) {
     const existing = ctx.getState().entities[id]
-    if (existing && !existing.isError) return ctx.dispatch(new GetPostSuccess(existing.entity))
+    if (existing && !existing.isError) {
+      return ctx.dispatch(new GetPostSuccess(existing.entity))
+    }
 
     ctx.setState(
       addEntity<Post>({ ...createEntity<Post>(id), isFetching: true }),
@@ -63,6 +68,7 @@ export class PortfolioState implements NgxsOnInit {
 
     const existingQuery = ctx.getState().pagination[query]
     if (existingQuery && existingQuery.pages[page.page]) return
+
     if (!existingQuery) {
       ctx.patchState({
         pagination: { ...state.pagination, [query]: { total: 0, totalPages: 0, pages: {} } },

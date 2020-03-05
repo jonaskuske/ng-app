@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { TopNavigationComponent } from './top-navigation.component'
+import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
+
+import { TopNavigationComponent } from './top-navigation.component'
 
 @NgModule({
   imports: [CommonModule, RouterModule],

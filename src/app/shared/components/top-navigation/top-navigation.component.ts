@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
-import { DisplayModeService, DisplayMode } from '../../services/display-mode.service'
+
+import { DisplayModeService } from '../../services/display-mode.service'
 
 @Component({
   selector: 'app-top-navigation',

@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { ShowcaseFormat, Image, YoutubeURL } from '../../models/post.model'
+import { Component, Input, OnInit, Inject } from '@angular/core'
+
 import { getYoutubeId } from 'src/app/shared/util'
+
+import { Image, ShowcaseFormat, YoutubeURL } from '../../models/post.model'
+import { DOCUMENT } from '@angular/common'
 
 @Component({
   selector: 'app-showcase',
@@ -14,19 +17,19 @@ export class ShowcaseComponent implements OnInit {
 
   public videoId: string
 
-  constructor() {}
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
   ngOnInit() {
     if (this.type === 'video') {
       this.videoId = getYoutubeId(this.video)
 
-      // this.iframeHTML = this.embedService.embed(this.video)
-      // This code loads the IFrame Player API code asynchronously, according to the instructions at
-      // https://developers.google.com/youtube/iframe_api_reference#Getting_Started
-      const tag = document.createElement('script')
-
-      tag.src = 'https://www.youtube.com/iframe_api'
-      document.body.appendChild(tag)
+      if (typeof YT === 'undefined') this.loadYouTubeAPI()
     }
+  }
+
+  private loadYouTubeAPI() {
+    const tag = document.createElement('script')
+    tag.src = 'https://www.youtube.com/iframe_api'
+    this.document.body.appendChild(tag)
   }
 }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
-import { Todo } from '../../todo.model'
+
 import { Store } from '@ngxs/store'
 import { AddTodo } from '../../todo.actions'
+import { Todo } from '../../todo.model'
 
 @Component({
   selector: 'app-form-add-todo',

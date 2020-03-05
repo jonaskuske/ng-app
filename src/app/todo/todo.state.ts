@@ -1,7 +1,9 @@
-import { State, Action, StateContext, Selector, createSelector } from '@ngxs/store'
-import { Todo } from './todo.model'
-import { AddTodo, RemoveTodo, UpdateTodo } from './todo.actions'
 import { Injectable } from '@angular/core'
+
+import { Action, createSelector, Selector, State, StateContext } from '@ngxs/store'
+
+import { AddTodo, RemoveTodo, UpdateTodo } from './todo.actions'
+import { Todo } from './todo.model'
 
 export type TodoStateModel = Todo[]
 const withIndex = <T>(item: T, index: number): T & { index: number } => ({ ...item, index })

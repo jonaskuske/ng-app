@@ -1,5 +1,5 @@
 {
-  "[typescript]": { "editor.formatOnSave": false },
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": { "source.fixAll.tslint": true },
   "material-icon-theme.activeIconPack": "angular_ngrx"
 }

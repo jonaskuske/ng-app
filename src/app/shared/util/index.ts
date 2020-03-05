@@ -17,7 +17,9 @@ export const getYoutubeId = (url: string, opts = { fuzzy: true }) => {
 
   // If any pattern matches, return the ID
   for (i = 0; i < patterns.length; ++i) {
-    if (patterns[i].test(url)) return patterns[i].exec(url)[1]
+    if (patterns[i].test(url)) {
+      return patterns[i].exec(url)[1]
+    }
   }
 
   if (opts.fuzzy) {
@@ -25,7 +27,9 @@ export const getYoutubeId = (url: string, opts = { fuzzy: true }) => {
     // for the 11 character key
     const tokens = url.split(/[/&?=#.\s]/g)
     for (i = 0; i < tokens.length; ++i) {
-      if (/^[^#&?]{11}$/.test(tokens[i])) return tokens[i]
+      if (/^[^#&?]{11}$/.test(tokens[i])) {
+        return tokens[i]
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import { StateOperator } from '@ngxs/store'
-import { patch, append } from '@ngxs/store/operators'
-import { Entity, PaginatedEntities, EntityPartial } from '../models'
+import { patch } from '@ngxs/store/operators'
+import { Entity, EntityPartial, PaginatedEntities } from '../models'
+
 import { isArray } from '.'
 
 export const createEntity = <T>(id: Entity<T>['id'], entity: T = null): Entity<T> => ({
@@ -15,7 +16,9 @@ export const createEntity = <T>(id: Entity<T>['id'], entity: T = null): Entity<T
 export function uniq(item: any | any[]): StateOperator<any[]> {
   return (state: any[]) => {
     const noUniq = isArray(item) ? item.some(i => !state.includes(i)) : state.includes(item)
-    if (noUniq) return state
+    if (noUniq) {
+      return state
+    }
 
     return state.concat(isArray(item) ? item.filter(i => !state.includes(i)) : item)
   }

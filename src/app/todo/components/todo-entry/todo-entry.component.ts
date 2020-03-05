@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core'
-import { Todo } from '../../todo.model'
+
 import { Store } from '@ngxs/store'
 import { RemoveTodo, UpdateTodo } from '../../todo.actions'
+import { Todo } from '../../todo.model'
 
 @Component({
   selector: 'app-todo-entry',

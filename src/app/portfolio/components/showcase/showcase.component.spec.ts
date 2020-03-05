@@ -1,27 +1,41 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-import { By } from '@angular/platform-browser'
-import { DebugElement } from '@angular/core'
+import { YouTubePlayerModule } from '@angular/youtube-player'
+
+import { render } from '@testing-library/angular'
 
 import { ShowcaseComponent } from './showcase.component'
 
+const image = {
+  name: '',
+  alt: '',
+  title: '',
+  sizes: {
+    large: '',
+    'large-height': 0,
+    'large-width': 0,
+    medium: '',
+    'medium-height': 0,
+    'medium-width': 0,
+  },
+}
+
 describe('ShowcaseComponent', () => {
-  let component: ShowcaseComponent
-  let fixture: ComponentFixture<ShowcaseComponent>
+  it('renders img when type is "image"', async () => {
+    const component = await render(ShowcaseComponent, {
+      imports: [YouTubePlayerModule],
+      componentProperties: { type: 'image', image },
+    })
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ShowcaseComponent],
-    }).compileComponents()
-  }))
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ShowcaseComponent)
-    component = fixture.componentInstance
-    fixture.detectChanges()
+    expect(component.getByRole('img'))
+    expect(component.queryByTestId('yt-player')).not.toBeInTheDocument()
   })
 
-  it('should create', () => {
-    expect(component).toBeTruthy()
+  it('renders YouTube player when type is "video"', async () => {
+    const component = await render(ShowcaseComponent, {
+      imports: [YouTubePlayerModule],
+      componentProperties: { type: 'video', video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+    })
+
+    expect(component.getByTestId('yt-player'))
+    expect(component.queryByRole('img')).not.toBeInTheDocument()
   })
 })
