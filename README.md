@@ -8,6 +8,8 @@
 <p align=center>Test application to become familiar with Angular</p>
 
 <br>
+<br>
+<br>
 
 ## Features
 
@@ -28,8 +30,6 @@
 - [ ] Progressive Web App
 - [x] Testing (Jest & Cypress) with CI
 
-<br>
-<br>
 <br>
 <br>
 
