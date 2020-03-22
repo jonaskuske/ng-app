@@ -16,4 +16,5 @@ cache:
 install:
   - 'npm ci'
 script:
-  - 'npm test && npm run e2e'
+  - 'npm test'
+  - 'npm run e2e'
