@@ -25,7 +25,7 @@ describe('Service: Posts', () => {
       [HttpTestingController, PostsService],
       (httpMock: HttpTestingController, service: PostsService) => {
         const id = 1
-        service.getPost(id).subscribe(post => {})
+        service.getPost(id).subscribe((post) => {})
 
         const req = httpMock.expectOne(`${apiUrl}posts/${id}`)
         expect(req.request.method).toBe('GET')
@@ -41,7 +41,7 @@ describe('Service: Posts', () => {
       (httpMock: HttpTestingController, service: PostsService) => {
         const page = 1
         const perPage = 3
-        service.getPosts({ page, perPage }).subscribe(postsPage => {
+        service.getPosts({ page, perPage }).subscribe((postsPage) => {
           expect(typeof postsPage.total).toBe('number')
           expect(typeof postsPage.totalPages).toBe('number')
         })
@@ -59,7 +59,7 @@ describe('Service: Posts', () => {
       [HttpTestingController, PostsService],
       (httpMock: HttpTestingController, service: PostsService) => {
         const page = 1
-        service.getPosts({ page }).subscribe(postsPage => {})
+        service.getPosts({ page }).subscribe((postsPage) => {})
 
         const req = httpMock.expectOne(`${apiUrl}posts?page=${page}&per_page=10`)
         expect(req.request.method).toBe('GET')

@@ -34,9 +34,9 @@ export class PortfolioSelectors {
     getPageQuery: ReturnType<typeof PortfolioSelectors.postQueryFn>,
   ) {
     return (options: PostRequestOptions) => {
-      const pages = Object.values(getPageQuery(options).pages).filter(p => !p.isFetching)
-      const ids = pages.map(p => p.entity).flat()
-      return ids.map(id => entities[id])
+      const pages = Object.values(getPageQuery(options).pages).filter((p) => !p.isFetching)
+      const ids = pages.map((p) => p.entity).flat()
+      return ids.map((id) => entities[id])
     }
   }
 }

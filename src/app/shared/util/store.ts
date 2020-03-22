@@ -15,12 +15,12 @@ export const createEntity = <T>(id: Entity<T>['id'], entity: T = null): Entity<T
 
 export function uniq(item: any | any[]): StateOperator<any[]> {
   return (state: any[]) => {
-    const noUniq = isArray(item) ? item.some(i => !state.includes(i)) : state.includes(item)
+    const noUniq = isArray(item) ? item.some((i) => !state.includes(i)) : state.includes(item)
     if (noUniq) {
       return state
     }
 
-    return state.concat(isArray(item) ? item.filter(i => !state.includes(i)) : item)
+    return state.concat(isArray(item) ? item.filter((i) => !state.includes(i)) : item)
   }
 }
 
@@ -32,7 +32,7 @@ export function addEntity<T>(entity: Entity<T>): StateOperator<PaginatedEntities
 export function addEntities<T>(payload: Entity<T>[]): StateOperator<PaginatedEntities<T>> {
   const entities = payload.reduce((obj, entity) => ((obj[entity.id] = entity), obj), {})
   return patch<PaginatedEntities<T>>({
-    ids: uniq(payload.map(p => p.id.toString())),
+    ids: uniq(payload.map((p) => p.id.toString())),
     entities: patch(entities),
   })
 }

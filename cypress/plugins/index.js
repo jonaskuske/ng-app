@@ -13,7 +13,7 @@ const webpackOptions = {
   },
 }
 
-module.exports = on => {
+module.exports = (on) => {
   const options = { webpackOptions }
 
   on('file:preprocessor', wp(options))

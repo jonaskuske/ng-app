@@ -45,8 +45,8 @@ export class PortfolioState implements NgxsOnInit {
     )
 
     return this.postsService.getPost(id).pipe(
-      map(response => ctx.dispatch(new GetPostSuccess(response))),
-      catchError(error => ctx.dispatch(new GetPostError(id, error))),
+      map((response) => ctx.dispatch(new GetPostSuccess(response))),
+      catchError((error) => ctx.dispatch(new GetPostError(id, error))),
     )
   }
 
@@ -86,8 +86,8 @@ export class PortfolioState implements NgxsOnInit {
     )
 
     return this.postsService.getPosts(page).pipe(
-      map(response => ctx.dispatch(new GetPostPageSuccess(page, response))),
-      catchError(error => ctx.dispatch(new GetPostPageError(page, error))),
+      map((response) => ctx.dispatch(new GetPostPageSuccess(page, response))),
+      catchError((error) => ctx.dispatch(new GetPostPageError(page, error))),
     )
   }
 
@@ -95,8 +95,8 @@ export class PortfolioState implements NgxsOnInit {
   getPostPageSuccess(ctx: PortfolioStateContext, { page, payload }: GetPostPageSuccess) {
     const query = serializePageQuery(page)
 
-    const entities = payload.body.map(item => createEntity(item.id, item))
-    const pageIds = payload.body.map(item => item.id.toString())
+    const entities = payload.body.map((item) => createEntity(item.id, item))
+    const pageIds = payload.body.map((item) => item.id.toString())
     ctx.setState(addEntities(entities))
 
     ctx.setState(

@@ -30,11 +30,13 @@ export class PostMasterComponent implements OnInit {
 
   constructor(private store: Store) {
     this.posts$ = this.postEntitiesByQueryFn$.pipe(
-      map(postsForQuery => postsForQuery(this.pagination)),
-      map(postEntities => postEntities.map(p => p.entity)),
+      map((postsForQuery) => postsForQuery(this.pagination)),
+      map((postEntities) => postEntities.map((p) => p.entity)),
     )
-    this.query$ = this.postQueryFn$.pipe(map(getPostQuery => getPostQuery(this.pagination)))
-    this.isFetching$ = this.query$.pipe(map(q => Object.values(q.pages).some(p => p.isFetching)))
+    this.query$ = this.postQueryFn$.pipe(map((getPostQuery) => getPostQuery(this.pagination)))
+    this.isFetching$ = this.query$.pipe(
+      map((q) => Object.values(q.pages).some((p) => p.isFetching)),
+    )
   }
 
   ngOnInit() {

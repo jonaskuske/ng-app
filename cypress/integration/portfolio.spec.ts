@@ -16,10 +16,8 @@ describe('DMP Portfolio', () => {
     getFirstPost()
       .find('h3')
       .invoke('text')
-      .then(text => {
-        getFirstPost()
-          .find('a')
-          .click()
+      .then((text) => {
+        getFirstPost().find('a').click()
 
         cy.get('h2').should('contain.text', text)
       })

@@ -22,21 +22,21 @@ export class TodoState {
   }
   static todosByCompletedState(completedState: boolean) {
     return createSelector([TodoState], (state: TodoStateModel) => {
-      return TodoState.todos(state).filter(todo => todo.isCompleted === completedState)
+      return TodoState.todos(state).filter((todo) => todo.isCompleted === completedState)
     })
   }
 
   @Action(AddTodo)
   addTodo(ctx: StateContext<TodoStateModel>, action: AddTodo) {
-    ctx.setState(todos => [...todos, action.todo])
+    ctx.setState((todos) => [...todos, action.todo])
   }
   @Action(RemoveTodo)
   removeTodo(ctx: StateContext<TodoStateModel>, action: RemoveTodo) {
-    ctx.setState(todos => todos.filter((_, index) => index !== action.index))
+    ctx.setState((todos) => todos.filter((_, index) => index !== action.index))
   }
   @Action(UpdateTodo)
   updateTodo(ctx: StateContext<TodoStateModel>, action: UpdateTodo) {
-    ctx.setState(todos =>
+    ctx.setState((todos) =>
       todos.map((todo, index) => (index === action.index ? { ...todo, ...action.todo } : todo)),
     )
   }

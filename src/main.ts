@@ -13,5 +13,5 @@ const logError = (err: Error) => console.error(err)
 const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule)
 
 if (environment.hmr) {
-  import('@ngxs/hmr-plugin').then(plugin => plugin.hmr(module, bootstrap).catch(logError))
+  import('@ngxs/hmr-plugin').then((plugin) => plugin.hmr(module, bootstrap).catch(logError))
 } else bootstrap().catch(logError)
