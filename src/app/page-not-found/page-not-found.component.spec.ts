@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 
-import { render, wait } from '@testing-library/angular'
+import { render, waitFor } from '@testing-library/angular'
 
 import { PageNotFoundComponent } from './page-not-found.component'
 
@@ -31,6 +31,8 @@ describe('PageNotFoundComponent', () => {
 
     component.fixture.ngZone.run(() => component.getByRole('button').click())
 
-    await wait(() => expect(component.getByTestId('homescreen')).toBeInTheDocument())
+    await waitFor(() => component.getByTestId('homescreen'))
+
+    expect(component.getByTestId('homescreen')).toBeInTheDocument()
   })
 })

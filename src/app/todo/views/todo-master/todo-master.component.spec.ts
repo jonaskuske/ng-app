@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms'
 import { of } from 'rxjs'
 
 import { NgxsModule } from '@ngxs/store'
-import { render, RenderResult, wait } from '@testing-library/angular'
+import { render, RenderResult } from '@testing-library/angular'
 import { FormAddTodoComponent } from '../../components/form-add-todo/form-add-todo.component'
 import { TodoEntryComponent } from '../../components/todo-entry/todo-entry.component'
 import { Todo } from '../../todo.model'
@@ -15,7 +15,6 @@ async function mockSelector<Comp = any>(component: RenderResult<Comp>, prop: str
   Object.defineProperty(component.fixture.componentInstance, prop, { writable: true })
   component.fixture.componentInstance[prop] = of(value)
   component.fixture.detectChanges()
-  await wait()
 }
 
 describe('TodoMasterComponent', () => {

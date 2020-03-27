@@ -1,7 +1,5 @@
-import { YouTubePlayerModule } from '@angular/youtube-player'
-
+import { YouTubePlayerModule, YouTubePlayer } from '@angular/youtube-player'
 import { render } from '@testing-library/angular'
-
 import { ShowcaseComponent } from './showcase.component'
 
 const image = {
@@ -21,7 +19,7 @@ const image = {
 describe('ShowcaseComponent', () => {
   it('renders img when type is "image"', async () => {
     const component = await render(ShowcaseComponent, {
-      imports: [YouTubePlayerModule],
+      declarations: [YouTubePlayer],
       componentProperties: { type: 'image', image },
     })
 
@@ -31,7 +29,7 @@ describe('ShowcaseComponent', () => {
 
   it('renders YouTube player when type is "video"', async () => {
     const component = await render(ShowcaseComponent, {
-      imports: [YouTubePlayerModule],
+      declarations: [YouTubePlayer],
       componentProperties: { type: 'video', video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
     })
 
