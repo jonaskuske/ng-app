@@ -1,4 +1,4 @@
-import { YouTubePlayerModule, YouTubePlayer } from '@angular/youtube-player'
+import { YouTubePlayer } from '@angular/youtube-player'
 import { render } from '@testing-library/angular'
 import { ShowcaseComponent } from './showcase.component'
 
