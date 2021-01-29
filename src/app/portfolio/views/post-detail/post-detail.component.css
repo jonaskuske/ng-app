@@ -19,6 +19,7 @@
 }
 
 .post-detail__footer {
+  border-top: none;
   margin-top: 1rem;
   text-align: center;
 }

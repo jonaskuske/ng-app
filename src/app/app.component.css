@@ -23,6 +23,7 @@ router-outlet::ng-deep + * {
 }
 
 footer {
+  border-top: none;
   margin-top: auto;
   text-align: center;
 }

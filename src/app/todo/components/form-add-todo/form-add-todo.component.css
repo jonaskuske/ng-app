@@ -20,5 +20,5 @@ button:disabled {
 
 input.ng-touched.ng-invalid,
 textarea.ng-touched.ng-invalid {
-  outline: 1px solid #850000;
+  box-shadow: 0 0 0 2px #850000;
 }

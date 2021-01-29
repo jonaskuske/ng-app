@@ -1,4 +1,4 @@
 article {
-  border-left: 2px solid;
+  border-left: 2px solid var(--border);
   padding-left: 1rem;
 }

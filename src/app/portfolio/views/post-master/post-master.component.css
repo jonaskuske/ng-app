@@ -13,6 +13,7 @@ a {
 }
 
 .post-master__footer {
+  border-top: none;
   text-align: center;
   margin-top: 2rem;
 }
