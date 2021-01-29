@@ -34,7 +34,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
-              "extractCss": true,
               "namedChunks": true,
               "extractLicenses": true,
               "vendorChunk": true,
@@ -51,20 +50,6 @@
                   "maximumError": "10kb"
                 }
               ]
-            },
-            "hmr": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.hmr.ts"
-                }
-              ]
             }
           }
         },
@@ -76,11 +61,6 @@
           "configurations": {
             "production": {
               "browserTarget": "ng-app:build:production"
-            },
-            "hmr": {
-              "hmr": true,
-              "hmrWarning": false,
-              "browserTarget": "ng-app:build:hmr"
             }
           }
         },

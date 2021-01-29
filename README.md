@@ -18,7 +18,6 @@
 - State Management with NGXS
 - API / Services
 - Forms (Template-driven)
-- Dev Setup with HMR
 - ...and more 👀
 
 ### Further options to add in the future
@@ -42,7 +41,7 @@ On WSL, you also need to [install and configure an X-server in order for Cypress
 
 ### Development server
 
-Run `npm start` for a dev server with Hot Module Reload (HMR). The app will be served on `http://localhost:4200/ng-app/`.
+Run `npm start` for a dev server. The app will be served on `http://localhost:4200/ng-app/`.
 
 ### Build
 

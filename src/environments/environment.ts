@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  hmr: false,
   apiUrl: 'https://dmp.hs-bremerhaven.de/wp-json/wp/v2/',
 }
 

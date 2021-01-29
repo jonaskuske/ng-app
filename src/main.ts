@@ -10,8 +10,4 @@ if (environment.production) {
 
 const logError = (err: Error) => console.error(err)
 
-const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule)
-
-if (environment.hmr) {
-  import('@ngxs/hmr-plugin').then((plugin) => plugin.hmr(module, bootstrap).catch(logError))
-} else bootstrap().catch(logError)
+platformBrowserDynamic().bootstrapModule(AppModule).catch(logError)
