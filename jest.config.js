@@ -11,13 +11,15 @@ module.exports = {
   moduleNameMapper,
   globals: {
     'ts-jest': {
-      tsConfig: './tsconfig.spec.json',
+      tsconfig: './tsconfig.spec.json',
       diagnostics: { warnOnly: true },
       stringifyContentPathRegex: '\\.html$',
-      astTransformers: [
-        'jest-preset-angular/build/InlineFilesTransformer',
-        'jest-preset-angular/build/StripStylesTransformer',
-      ],
+      astTransformers: {
+        after: [
+          'jest-preset-angular/build/InlineFilesTransformer',
+          'jest-preset-angular/build/StripStylesTransformer',
+        ],
+      },
     },
   },
 }
