@@ -1,24 +1,34 @@
-export interface Post {
+export interface BasePost {
   id: number
   title: { rendered: string }
+  categories: number[]
   acf: {
-    beschreibung: string
-    showcaseFormat: ShowcaseFormat
-    showcase: Image
-    youtube: YoutubeURL
-    erstellungsjahr: string
-    page: { post_title: string }
-    modul: ObjectWithName
-    studierende: ObjectWithName[]
-    dozierende: ObjectWithName[]
-    schlagworte: ObjectWithName[]
-    semester: ObjectWithName[]
-    galerie: Image[]
+    description: string
+    showcaseType: ShowcaseType
+    showcaseImage: Image
+    showcaseVideo: VideoURL
+    year: string
+    topic: WrappedName
+    students: WrappedName[]
+    lecturers: WrappedName[]
+    tags: WrappedName[]
+    semester: WrappedName[]
+    gallery: Image[]
   }
 }
 
-export type ShowcaseFormat = 'image' | 'video'
-export type YoutubeURL = string
+export interface Category {
+  name: string
+}
+
+export interface Post extends BasePost {
+  categoryName: Category['name']
+}
+
+export type ShowcaseType = 'image' | 'video'
+
+export type VideoURL = string
+
 export interface Image {
   title: string
   alt: string
@@ -32,6 +42,7 @@ export interface Image {
     'large-height': number
   }
 }
-export interface ObjectWithName {
+
+export interface WrappedName {
   name: string
 }

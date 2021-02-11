@@ -53,9 +53,6 @@ export class PostMasterComponent implements OnInit {
   getTeaser(text: string) {
     text = text.replace(linebreakRegex, '')
 
-    if (text.length < 150) {
-      return text
-    }
-    return `${text.slice(0, 145)}...`
+    return text.length < 160 ? text : `${text.slice(0, 160)}...`
   }
 }

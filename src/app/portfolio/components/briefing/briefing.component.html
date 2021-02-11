@@ -2,7 +2,7 @@
   <tbody>
     <tr>
       <th scope="row">Kategorie:</th>
-      <td [innerHTML]="data.modul.name"></td>
+      <td [innerHTML]="data.topic.name"></td>
     </tr>
     <tr>
       <th scope="row">Semester:</th>
@@ -12,18 +12,18 @@
     </tr>
     <tr>
       <th scope="row">Erstellunsjahr:</th>
-      <td [innerHTML]="data.erstellungsjahr"></td>
+      <td [innerHTML]="data.year"></td>
     </tr>
     <tr>
-      <th scope="row">{{ data.studierende.length > 1 ? 'Studierende' : 'Student*in' }}:</th>
+      <th scope="row">{{ data.students.length > 1 ? 'Studierende' : 'Student*in' }}:</th>
       <td>
-        <span *ngFor="let s of data.studierende" [innerHTML]="s.name + '<br>'"></span>
+        <span *ngFor="let s of data.students" [innerHTML]="s.name + '<br>'"></span>
       </td>
     </tr>
     <tr>
-      <th scope="row">{{ data.dozierende.length > 1 ? 'Dozierende' : 'Dozent*in' }}:</th>
+      <th scope="row">{{ data.lecturers.length > 1 ? 'Dozierende' : 'Dozent*in' }}:</th>
       <td>
-        <span *ngFor="let d of data.dozierende" [innerHTML]="d.name + '<br>'"></span>
+        <span *ngFor="let d of data.lecturers" [innerHTML]="d.name + '<br>'"></span>
       </td>
     </tr>
   </tbody>

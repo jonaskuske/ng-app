@@ -4,25 +4,24 @@ import { Post } from '../../models/post.model'
 import { BriefingComponent } from './briefing.component'
 
 const getData = (changes?: Partial<Post['acf']>): Post['acf'] => ({
-  dozierende: [],
-  studierende: [],
-  beschreibung: '',
+  lecturers: [],
+  students: [],
+  description: '',
   semester: [],
-  erstellungsjahr: '',
-  modul: { name: '' },
-  schlagworte: [],
-  galerie: [],
-  showcase: null,
-  showcaseFormat: 'image',
-  page: { post_title: '' },
-  youtube: null,
+  year: '',
+  topic: { name: '' },
+  tags: [],
+  gallery: [],
+  showcaseImage: null,
+  showcaseType: 'image',
+  showcaseVideo: null,
   ...changes,
 })
 
 describe('BriefingComponent', () => {
   it('says "Studierende" if there are multiple', async () => {
     const component = await render(BriefingComponent, {
-      componentProperties: { data: getData({ studierende: [{ name: 'A' }, { name: 'B' }] }) },
+      componentProperties: { data: getData({ students: [{ name: 'A' }, { name: 'B' }] }) },
     })
 
     expect(component.getByText('Studierende:'))
@@ -31,7 +30,7 @@ describe('BriefingComponent', () => {
 
   it('says "Student*in" if there is just one', async () => {
     const component = await render(BriefingComponent, {
-      componentProperties: { data: getData({ studierende: [{ name: 'A' }] }) },
+      componentProperties: { data: getData({ students: [{ name: 'A' }] }) },
     })
 
     expect(component.getByText('Student*in:'))
@@ -40,7 +39,7 @@ describe('BriefingComponent', () => {
 
   it('says "Dozierende" if there are multiple', async () => {
     const component = await render(BriefingComponent, {
-      componentProperties: { data: getData({ dozierende: [{ name: 'A' }, { name: 'B' }] }) },
+      componentProperties: { data: getData({ lecturers: [{ name: 'A' }, { name: 'B' }] }) },
     })
 
     expect(component.getByText('Dozierende:'))
@@ -49,7 +48,7 @@ describe('BriefingComponent', () => {
 
   it('says "Dozent*in" if there is just one', async () => {
     const component = await render(BriefingComponent, {
-      componentProperties: { data: getData({ dozierende: [{ name: 'A' }] }) },
+      componentProperties: { data: getData({ lecturers: [{ name: 'A' }] }) },
     })
 
     expect(component.getByText('Dozent*in:'))

@@ -1,10 +1,12 @@
 <h2>DMP Portfolio</h2>
 <ng-container *ngIf="(posts$ | async).length; else noPosts">
-  <section *ngFor="let post of posts$ | async">
+  <section *ngFor="let post of posts$ | async; first as isFirst">
+    <hr *ngIf="!isFirst" />
     <h3 [innerHTML]="post.title.rendered"></h3>
-    <p [innerHTML]="getTeaser(post.acf.beschreibung)"></p>
-    <a routerLink="{{ post.id }}">Projekt ansehen →</a>
-    <hr />
+    <div>
+      <div [innerHTML]="getTeaser(post.acf.description)"></div>
+      <a routerLink="{{ post.id }}">Projekt ansehen →</a>
+    </div>
   </section>
 
   <footer class="post-master__footer">
@@ -20,7 +22,7 @@
 
 <ng-template #noPosts>
   <p *ngIf="(isFetching$ | async) === false" class="post-master__status-msg">
-    Keine Projekte vorhanden. <span aria-hidden="true" style="font-style: normal;">🚫</span>
+    Keine Projekte vorhanden. <span aria-hidden="true" style="font-style: normal">🚫</span>
   </p>
 </ng-template>
 

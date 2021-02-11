@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Inject } from '@angular/core'
 
 import { getYoutubeId } from 'src/app/shared/util'
 
-import { Image, ShowcaseFormat, YoutubeURL } from '../../models/post.model'
+import { Image, ShowcaseType, VideoURL } from '../../models/post.model'
 import { DOCUMENT } from '@angular/common'
 
 @Component({
@@ -11,9 +11,9 @@ import { DOCUMENT } from '@angular/common'
   styleUrls: ['./showcase.component.css'],
 })
 export class ShowcaseComponent implements OnInit {
-  @Input() type: ShowcaseFormat
+  @Input() type: ShowcaseType
   @Input() image: Image
-  @Input() video: YoutubeURL
+  @Input() video: VideoURL
 
   public videoId: string
 

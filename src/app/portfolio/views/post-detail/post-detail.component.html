@@ -2,25 +2,25 @@
   <section *ngIf="post$ | async as post; else notFound">
     <h2 [innerHTML]="post.title.rendered"></h2>
     <p class="post-detail__category">
-      {{ post.acf.page.post_title }}
-      <span *ngIf="post.acf.schlagworte.length" class="post-detail__category__tags">
-        – <span *ngFor="let tag of post.acf.schlagworte">{{ tag.name }}</span>
+      {{ post.categoryName }}
+      <span *ngIf="post.acf.tags.length" class="post-detail__category__tags">
+        – <span *ngFor="let tag of post.acf.tags">{{ tag.name }}</span>
       </span>
     </p>
 
     <app-showcase
-      [type]="post.acf.showcaseFormat"
-      [image]="post.acf.showcase"
-      [video]="post.acf.youtube"
+      [type]="post.acf.showcaseType"
+      [image]="post.acf.showcaseImage"
+      [video]="post.acf.showcaseVideo"
     ></app-showcase>
-    <p [innerHTML]="post.acf.beschreibung"></p>
+    <div [innerHTML]="post.acf.description"></div>
 
     <h3>Steckbrief</h3>
     <app-briefing [data]="post.acf"></app-briefing>
 
-    <h3 *ngIf="post.acf.galerie.length">Galerie</h3>
+    <h3 *ngIf="post.acf.gallery.length">Galerie</h3>
     <img
-      *ngFor="let image of post.acf.galerie"
+      *ngFor="let image of post.acf.gallery"
       [src]="image.sizes.medium"
       [alt]="image.alt || image.title || image.name || ''"
       [width]="image.sizes['medium-width']"
@@ -36,7 +36,7 @@
 <ng-template #notFound>
   <p class="post-detail__status-msg">
     Projekt mit ID »{{ rawId }}« nicht gefunden.
-    <span style="font-style: normal;" role="img" aria-label="Sad cat">😿</span>
+    <span style="font-style: normal" role="img" aria-label="Sad cat">😿</span>
   </p>
 </ng-template>
 

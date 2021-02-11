@@ -1,4 +1,9 @@
-section p {
+section {
+  margin-bottom: 2em;
+}
+
+section div div,
+section div div::ng-deep p {
   display: inline;
 }
 

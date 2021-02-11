@@ -26,13 +26,21 @@ describe('Service: Posts', () => {
       inject(
         [HttpTestingController, PostsService],
         (httpMock: HttpTestingController, service: PostsService) => {
-          const id = 1
-          service.getPost(id).subscribe((post) => {})
+          const postId = 1
+          const categoryId = 1
+          const mockPost = { categories: [categoryId] }
 
-          const req = httpMock.expectOne(`${apiUrl}posts/${id}`)
+          service.getPost(postId).subscribe((post) => {})
+
+          const req = httpMock.expectOne(`${apiUrl}posts/${postId}`)
           expect(req.request.method).toBe('GET')
 
-          req.flush({})
+          req.flush(mockPost)
+
+          const categoryReq = httpMock.expectOne(`${apiUrl}categories/${categoryId}`)
+          expect(categoryReq.request.method).toBe('GET')
+
+          categoryReq.flush({})
         },
       ),
     ),
@@ -46,6 +54,10 @@ describe('Service: Posts', () => {
         (httpMock: HttpTestingController, service: PostsService) => {
           const page = 1
           const perPage = 3
+
+          const categoryIds = [1, 2, 3]
+          const mockPosts = categoryIds.map((id) => ({ categories: [id] }))
+
           service.getPosts({ page, perPage }).subscribe((postsPage) => {
             expect(typeof postsPage.total).toBe('number')
             expect(typeof postsPage.totalPages).toBe('number')
@@ -54,7 +66,9 @@ describe('Service: Posts', () => {
           const req = httpMock.expectOne(`${apiUrl}posts?page=${page}&per_page=${perPage}`)
           expect(req.request.method).toBe('GET')
 
-          req.flush([], { headers: { 'x-wp-total': '0', 'x-wp-totalpages': '0' } })
+          req.flush(mockPosts, { headers: { 'x-wp-total': '3', 'x-wp-totalpages': '1' } })
+
+          categoryIds.forEach((id) => httpMock.expectOne(`${apiUrl}categories/${id}`).flush({}))
         },
       ),
     ),
