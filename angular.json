@@ -76,7 +76,8 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "detectOpenHandles": true
+            "detectOpenHandles": true,
+            "globalMocks": ["doctype", "styleTransform", "matchMedia"]
           }
         },
         "lint": {

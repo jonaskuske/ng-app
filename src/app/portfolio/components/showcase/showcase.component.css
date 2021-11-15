@@ -6,7 +6,7 @@
   background: url('~src/assets/icons/video.png') center / 20% no-repeat, black;
 }
 
-.showcase__iframe-container >>> iframe {
+.showcase__iframe-container ::ng-deep iframe {
   position: absolute;
   top: 0;
   left: 0;
