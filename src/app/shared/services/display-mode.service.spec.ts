@@ -18,18 +18,18 @@ afterEach(() => {
 
 describe('Service: DisplayMode', () => {
   it('defaults to dark display mode', () => {
-    new DisplayModeService(document) // tslint:disable-line no-unused-expression
+    new DisplayModeService(document)
 
     expect(stylesheetLink.href).toBe(DARK_HREF)
   })
 
   it('uses display mode from localStorage', () => {
     localStorage.setItem(STORAGE_KEY, 'light')
-    new DisplayModeService(document) // tslint:disable-line no-unused-expression
+    new DisplayModeService(document)
     expect(stylesheetLink.href).toBe(LIGHT_HREF)
 
     localStorage.setItem(STORAGE_KEY, 'dark')
-    new DisplayModeService(document) // tslint:disable-line no-unused-expression
+    new DisplayModeService(document)
     expect(stylesheetLink.href).toBe(DARK_HREF)
   })
 

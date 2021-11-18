@@ -59,15 +59,13 @@ export class PostsService {
       fromObject: { page: String(page), per_page: String(perPage) },
     })
 
-    return this.http
-      .get<BasePost[]>(`${apiUrl}posts`, { params, observe: 'response' })
-      .pipe(
-        switchMap((response) => {
-          return forkJoin(response.body.map((basePost) => this.getPostFromBasePost(basePost))).pipe(
-            map((body) => ({ ...response, body })),
-          )
-        }),
-        map(getPageFromResponse),
-      )
+    return this.http.get<BasePost[]>(`${apiUrl}posts`, { params, observe: 'response' }).pipe(
+      switchMap((response) => {
+        return forkJoin(response.body.map((basePost) => this.getPostFromBasePost(basePost))).pipe(
+          map((body) => ({ ...response, body })),
+        )
+      }),
+      map(getPageFromResponse),
+    )
   }
 }

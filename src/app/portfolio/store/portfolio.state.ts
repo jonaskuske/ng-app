@@ -40,9 +40,7 @@ export class PortfolioState implements NgxsOnInit {
       return ctx.dispatch(new GetPostSuccess(existing.entity))
     }
 
-    ctx.setState(
-      addEntity<Post>({ ...createEntity<Post>(id), isFetching: true }),
-    )
+    ctx.setState(addEntity<Post>({ ...createEntity<Post>(id), isFetching: true }))
 
     return this.postsService.getPost(id).pipe(
       map((response) => ctx.dispatch(new GetPostSuccess(response))),

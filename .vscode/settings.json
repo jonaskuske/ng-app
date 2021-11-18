@@ -1,5 +1,12 @@
 {
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": { "source.fixAll.tslint": true },
-  "material-icon-theme.activeIconPack": "angular_ngrx"
+  "editor.codeActionsOnSave": { "source.fixAll": true },
+  "material-icon-theme.activeIconPack": "angular_ngrx",
+  "[javascript]": {
+    "editor.defaultFormatter": null
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": null
+  },
+  "jest.jestCommandLine": "npm run test --"
 }

@@ -1,5 +1,3 @@
-/* tslint:disable:no-unused-variable */
-
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { waitForAsync, inject, TestBed } from '@angular/core/testing'
 

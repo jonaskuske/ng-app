@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 
 import { Post } from '../../models/post.model'
 
@@ -7,8 +7,6 @@ import { Post } from '../../models/post.model'
   templateUrl: './briefing.component.html',
   styleUrls: ['./briefing.component.css'],
 })
-export class BriefingComponent implements OnInit {
+export class BriefingComponent {
   @Input() data: Post['acf']
-
-  ngOnInit() {}
 }
