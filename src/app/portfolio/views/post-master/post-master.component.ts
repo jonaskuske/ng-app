@@ -28,7 +28,9 @@ export class PostMasterComponent implements OnInit {
   query$: Observable<ReturnType<PostQueryFn>>
   isFetching$: Observable<boolean>
 
-  constructor(private store: Store) {
+  constructor(private store: Store) {}
+
+  ngOnInit() {
     this.posts$ = this.postEntitiesByQueryFn$.pipe(
       map((postsForQuery) => postsForQuery(this.pagination)),
       map((postEntities) => postEntities.map((p) => p.entity)),
@@ -37,9 +39,6 @@ export class PostMasterComponent implements OnInit {
     this.isFetching$ = this.query$.pipe(
       map((q) => Object.values(q.pages).some((p) => p.isFetching)),
     )
-  }
-
-  ngOnInit() {
     this.loadPage()
   }
   loadPage() {

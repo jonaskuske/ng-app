@@ -27,13 +27,13 @@ export class PostDetailComponent implements OnInit {
   constructor(route: ActivatedRoute, private store: Store) {
     this.rawId = route.snapshot.paramMap.get('id')
     this.id = Number(this.rawId)
-
-    this.postEntity$ = this.postEntityByIdFn$.pipe(map((postEntityById) => postEntityById(this.id)))
-    this.post$ = this.postEntity$.pipe(map((post) => post.entity))
-    this.isFetching$ = this.postEntity$.pipe(map((post) => post.isFetching))
   }
 
   ngOnInit() {
+    this.postEntity$ = this.postEntityByIdFn$.pipe(map((postEntityById) => postEntityById(this.id)))
+    this.post$ = this.postEntity$.pipe(map((post) => post.entity))
+    this.isFetching$ = this.postEntity$.pipe(map((post) => post.isFetching))
+
     this.store.dispatch(new GetPost(this.id)).subscribe()
   }
 
