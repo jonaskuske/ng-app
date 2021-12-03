@@ -1,5 +1,5 @@
 <p align=center>
-  <a href="https://travis-ci.org/jonaskuske/ng-app"><img align="center" src="https://travis-ci.org/jonaskuske/ng-app.svg?branch=master" alt="Build status"></a>
+  <a href="https://app.travis-ci.com/github/jonaskuske/ng-app"><img align="center" src="https://app.travis-ci.com/jonaskuske/ng-app.svg?branch=main" alt="Build status"></a>
 </p>
 
 <br>
@@ -36,7 +36,7 @@
 
 ### Installation
 
-Run `npm install` to install the required dependencies.  
+Run `npm install` to install the required dependencies.
 On WSL, you also need to [install and configure an X-server in order for Cypress to work](https://nickymeuleman.netlify.com/blog/gui-on-wsl2-cypress).
 
 ### Development server
