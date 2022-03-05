@@ -10,6 +10,7 @@ import { Todo } from '../../todo.model'
 import { TodoState } from '../../todo.state'
 
 import { TodoMasterComponent } from './todo-master.component'
+import { environment } from 'src/environments/environment'
 
 async function mockSelector<Comp = any>(component: RenderResult<Comp>, prop: string, value: any) {
   Object.defineProperty(component.fixture.componentInstance, prop, { writable: true })
@@ -21,7 +22,10 @@ describe('TodoMasterComponent', () => {
   it('shows fallback message if none are completed', async () => {
     const component = await render(TodoMasterComponent, {
       declarations: [TodoEntryComponent, FormAddTodoComponent],
-      imports: [FormsModule, NgxsModule.forRoot([TodoState])],
+      imports: [
+        FormsModule,
+        NgxsModule.forRoot([TodoState], { developmentMode: !environment.production }),
+      ],
     })
 
     await mockSelector(component, 'completedTodos$', [])
@@ -31,7 +35,10 @@ describe('TodoMasterComponent', () => {
   it('shows fallback message if none are uncompleted', async () => {
     const component = await render(TodoMasterComponent, {
       declarations: [TodoEntryComponent, FormAddTodoComponent],
-      imports: [FormsModule, NgxsModule.forRoot([TodoState])],
+      imports: [
+        FormsModule,
+        NgxsModule.forRoot([TodoState], { developmentMode: !environment.production }),
+      ],
     })
 
     await mockSelector(component, 'uncompletedTodos$', [])
@@ -43,7 +50,10 @@ describe('TodoMasterComponent', () => {
   it('renders completed todos', async () => {
     const component = await render(TodoMasterComponent, {
       declarations: [TodoEntryComponent, FormAddTodoComponent],
-      imports: [FormsModule, NgxsModule.forRoot([TodoState])],
+      imports: [
+        FormsModule,
+        NgxsModule.forRoot([TodoState], { developmentMode: !environment.production }),
+      ],
     })
 
     const todo = new Todo('TEST_TODO', '', true)
@@ -55,7 +65,10 @@ describe('TodoMasterComponent', () => {
   it('renders uncompleted todos', async () => {
     const component = await render(TodoMasterComponent, {
       declarations: [TodoEntryComponent, FormAddTodoComponent],
-      imports: [FormsModule, NgxsModule.forRoot([TodoState])],
+      imports: [
+        FormsModule,
+        NgxsModule.forRoot([TodoState], { developmentMode: !environment.production }),
+      ],
     })
 
     const todo = new Todo('TEST_TODO', '', false)

@@ -1,5 +1,5 @@
 const { compilerOptions } = require('./tsconfig.json')
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { pathsToModuleNameMapper } = require('ts-jest')
 
 module.exports = {
   testPathIgnorePatterns: ['node_modules', 'cypress', 'testcafe'],
